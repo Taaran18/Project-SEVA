@@ -1,0 +1,14 @@
+body{
+
+}
+header{
+    
+}
+footer{
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    height: fit-content;
+    padding: 1em;
+}
