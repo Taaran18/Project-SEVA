@@ -24,6 +24,9 @@
         <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
         <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
         <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="5"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="6"></li>        
+        <li data-target="#carouselExampleCaptions" data-slide-to="7"></li>
     </ol>
 
     <div class="carousel-inner">
@@ -39,15 +42,6 @@
         <div class="carousel-item">
               <img src="/static/logo/air.jpeg" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
-        <h1>INDIAN AIR FORCE DAY</h1>
-        <h2>8th October</h2>
-        <h3>Touch the sky with Glory</h3>
-        </div>
-        </div>
-
-        <div class="carousel-item">
-              <img src="/static/logo/navy.jpeg" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
         <h1>INDIAN NAVY DAY</h1>
         <h2>4th December</h2>
         <h3>Sha No Varunah</h3>
@@ -55,11 +49,47 @@
         </div>
 
         <div class="carousel-item">
+              <img src="/static/logo/navy.jpeg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+        <h1>INDIAN AIR FORCE DAY</h1>
+        <h2>8th October</h2>
+        <h3>Touch the sky with Glory</h3>
+        </div>
+        </div>
+
+        <div class="carousel-item">
           <img src="/static/logo/coast-guard.jpg" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
         <h1>INDIAN COAST GUARD DAY</h1>
-        <h2>4th December</h2>
-        <h3>Sha No Varunah</h3>
+        <h2>1st February</h2>
+        <h3>We Protect</h3>
+        </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="/static/logo/coast-guard.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+        <h1>NATIONAL CADET CORPS DAY</h1>
+        <h2>15th July</h2>
+        <h3>Unity and Discipline</h3>
+        </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="/static/logo/coast-guard.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+        <h1>NATIONAL CADET CORPS DAY</h1>
+        <h2>15th July</h2>
+        <h3>Unity and Discipline</h3>
+        </div>
+      </div>  
+
+        <div class="carousel-item">
+          <img src="/static/logo/coast-guard.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+        <h1>NATIONAL CADET CORPS DAY</h1>
+        <h2>15th July</h2>
+        <h3>Unity and Discipline</h3>
         </div>
         </div>
 
@@ -90,7 +120,7 @@
             <p class="card-text"><strong>Title:</strong>{{job.title}}<br /><strong>Description:</strong>{{job.description}}<br /><strong>Salary:</strong>{{job.salary}}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                <a class="new-group" href="/new"><button type="button">View</button></a>
               </div>
               <small class="text-muted"></small>
             </div>
@@ -102,9 +132,6 @@
   </div>
 </div>
   
-
-
-
 {% elif request.user.is_organisation %}
 <h1 align='center'>Your Posted Jobs</h1>
 <table style="border-collapse: collapse; width: 80%; table-align='center" class="jobs-posted">
@@ -132,7 +159,7 @@
 <center><a href="/register" ><button class="btn btn-outline-primary" type="submit" style="margin-top: 3em;margin-bottom:3em;">Login/Register</button></a></center>
 {% endif %}
 
-
+<h1>Photo Gallery</h1>
 
 
 {% endblock body %}
