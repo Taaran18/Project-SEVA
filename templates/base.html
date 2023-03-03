@@ -23,12 +23,6 @@
   <div class="logo-text">
     <img src="{% static 'logo/SEVA.png' %}" alt="Logo" class="logo">
   </div>
-  {% comment %} <a class="navbar-brand" href="#">Project SEVA</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button> {% endcomment %}
-
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
@@ -86,30 +80,22 @@
                         <h5 id="chat-timestamp"></h5>
                         <p id="botStarterMessage" class="botText"><span>Loading...</span></p>
                     </div>
-
                     <!-- User input box -->
                     <div class="chat-bar-input-block">
                         <div id="userInput">
-                            <input id="textInput" class="input-box" type="text" name="msg"
-                                   placeholder="Tap 'Enter' to send a message">
+                            <input id="textInput" class="input-box" type="text" name="msg" placeholder="Tap 'Enter' to send a message">
                             <p></p>
                         </div>
-
                         <div class="chat-bar-icons">
-                            <i id="chat-icon" style="color: crimson;" class="fa fa-fw fa-heart"
-                               onclick="heartButton()"></i>
-                            <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-send"
-                               onclick="sendButton()"></i>
+                            <i id="chat-icon" style="color: crimson;" class="fa fa-fw fa-heart"onclick="heartButton()"></i>
+                            <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-send"onclick="sendButton()"></i>
                         </div>
                     </div>
-
                     <div id="chat-bar-bottom">
                         <p></p>
                     </div>
-
                 </div>
             </div>
-
         </div>
     </div>
 
