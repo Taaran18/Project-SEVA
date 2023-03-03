@@ -1,14 +1,10 @@
-body{
-
-}
-header{
-    
-}
-footer{
+.logo-text {
     display: flex;
-    position: absolute;
-    bottom: 0;
-    width: 100vw;
-    height: fit-content;
-    padding: 1em;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 10px;
 }
