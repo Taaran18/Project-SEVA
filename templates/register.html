@@ -14,9 +14,10 @@
 </head>
 <body>
     {% block body %}
+        <section class="buttons">
         <button class="btn btn-primary"  id="user-form-btn">User</button>
         <button class="btn btn-primary"  id="org-form-btn">Organisation</button>
-
+        </section>
         <section id="reg-form">
             <form method="POST" action='register/user' class="registration-form" id="user-form" enctype="multipart/form-data">
                 <center>

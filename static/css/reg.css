@@ -1,7 +1,14 @@
 body{
  text-align: center;
-}
 
+}
+.buttons{
+    margin-top: 2em;
+}
+.buttons button{
+    font-size: 1.5em;
+    width:  10em;
+}
 .registration-form{
     margin: auto;
     text-align: center;
@@ -17,11 +24,13 @@ body{
     width: 10em;
     max-width: 15em;
     padding: 0.5em;
+    text-align: left;
 
 }
 .registration-form td input, .registration-form td select, .registration-form textarea{
     max-width: 100%;
-    height: 1.5em;
+    height: 2em;
+    border-radius: 0.5em;
     text-align: center;
     
 }
