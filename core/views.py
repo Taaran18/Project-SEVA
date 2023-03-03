@@ -57,7 +57,7 @@ def organisation_registration(request):
         form = OrganizationUserForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpRequest('/login')
+            return redirect('login')
     return render(request,'org_reg.html',{'form': form})
 def user_registration(request):
     form = NormalUserForm()
@@ -65,7 +65,7 @@ def user_registration(request):
         form = NormalUserForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpRequest('/login')
+            return redirect('login')
     return render(request,'user_reg.html',{'form': form})
 
 
