@@ -29,6 +29,7 @@ urlpatterns = [
     path('register/user', user_registration),
     path('register/organisation',organisation_registration),
     path('resume',resume),
+    path('profile',profile),
 ]
 
 urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

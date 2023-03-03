@@ -52,3 +52,5 @@ def resume(request):
     return render(request,'resume.html')
 def apply_to_job(request):
     pass
+def profile(request):
+    return render(request,'profile.html')
