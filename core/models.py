@@ -4,7 +4,6 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 DOMAINS = (
-("All", "All"),
 ("Aerospace and Aviation Sector", "Aerospace and Aviation Sector"),
 ("Agriculture", "Agriculture"),
 ("Apparel Made-Ups &amp; Home Furnishing Sector", "Apparel Made-Ups &amp; Home Furnishing Sector"),
@@ -44,18 +43,24 @@ DOMAINS = (
 ("Telecom Sector ", "Telecom Sector "),
 ("Textile Sector", "Textile Sector"),
 ("Tourism and Hospitality", "Tourism and Hospitality"),
+("other", "other"),
 )
 
 USER_TYPE = (
              ('organisation','organisation'),
              ('normal','normal'),
              )
+
+JOB_TYPE = (
+            ('Part-Time','Part-Time'),
+            ('Full-Time','Full-Time'),
+            )
 class User(AbstractUser):
     mobile = models.BigIntegerField(name='mobile')
     domain = models.CharField(choices=DOMAINS,max_length=255) 
     user_type = models.CharField(choices=USER_TYPE, max_length=50)
-    photo = models.ImageField(name='photo',upload_to='images')
-    
+    photo = models.ImageField(name='photo',upload_to='images',null=True,blank=True)
+    about = models.CharField(max_length=255)
     ## User Fields
     user_state = models.CharField(name="state",max_length=60,null=True)
     user_city = models.CharField(name="city", max_length=60,null=True)
@@ -68,7 +73,10 @@ class User(AbstractUser):
         if not self.id:
             self.username = self.email
         super(User, self).save(*args, **kwargs)
-
+    def is_organisation(self):
+        return self.user_type=="organisation"
+    def is_normal(self):
+        return self.user_type=="normal"
 class Contact(models.Model):
     name = models.CharField(max_length=122)
     email = models.CharField(max_length=122)
@@ -78,3 +86,39 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.name
+
+class Job(models.Model):
+    title = models.CharField(max_length=155)
+    company = models.ForeignKey(to=User, limit_choices_to={'user_type':'is_organisation'}, on_delete=models.CASCADE,related_name='posted_by')
+    short_description = models.CharField(max_length=255)
+    description = models.TextField()
+    salary = models.CharField(max_length=50)
+    skill_requirements = models.CharField(max_length=255)
+    openings = models.PositiveIntegerField()
+    location = models.CharField(max_length=100)
+    posted_on = models.DateTimeField(auto_now_add=True)
+    duration = models.DurationField()
+    job_type = models.CharField(choices=JOB_TYPE,max_length=155)
+    apply_by = models.DateField()
+    start_date = models.DateField()
+    applicants = models.ManyToManyField(User,limit_choices_to={'user_type':'is_normal'})
+
+
+
+
+class Education(models.Model):
+    user = models.ForeignKey(User,limit_choices_to={'user_type':'is_normal'},on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    institute = models.CharField(max_length=200)
+    from_year = models.PositiveIntegerField()
+    to_year = models.PositiveIntegerField()
+
+class Work(models.Model):
+    user = models.ForeignKey(User,limit_choices_to={'user_type':'is_normal'},on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    institute = models.CharField(max_length=200)
+    from_year = models.PositiveIntegerField()
+    to_year = models.PositiveIntegerField()
+
+
+    
