@@ -9,6 +9,7 @@ function getBotResponse(input) {
     else if (input == "scissors") {
         return "rock";
     }
+    
 
     // Simple responses
     if (input == "hello" || input == "hi") {
@@ -20,4 +21,5 @@ function getBotResponse(input) {
     else {
         return "Try asking something else!";
     }
+
 }
