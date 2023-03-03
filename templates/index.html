@@ -1,7 +1,20 @@
 {% extends 'base.html' %}
 
 {% block title %}Home{% endblock title %}
-
+{% block css %} 
+<style>
+  body{
+    padding-bottom: 5em;
+  }
+.jobs-posted, table{
+  margin-bottom: 5em;
+  margin:auto;
+}
+.carousel-item{
+  max-height: 80vh;
+}
+</style>
+{% endblock css %}
 {% block body %}
 <div class="container-fluid px-0">
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -42,7 +55,7 @@
         </div>
 
         <div class="carousel-item">
-          <img src="/static/logo/navy.jpeg" class="d-block w-100" alt="...">
+          <img src="/static/logo/coast-guard.jpg" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
         <h1>INDIAN COAST GUARD DAY</h1>
         <h2>4th December</h2>
@@ -62,105 +75,39 @@
     </div>
 </div>
 
-<!--
+{% if request.user.is_normal %}
 <div class="container my-3">
-<h1 class="my-4 text-center">Select opportunity which suits you</h1>
+  <h1 class="my-4 text-center">Select opportunity which suits you</h1>
 
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-        <img src="https://source.unsplash.com/1200x900/?job" class="d-block w-100" alt="...">
-            
-            <div class="card-body">
-              <p class="card-text"><strong>Title:</strong>Job 0<br /><strong>Description:</strong>Job Description<br /><strong>Salary:</strong>4K-8K</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                </div>
-                <small class="text-muted">9 mins</small>
+  <div class="row">
+
+    {% for job in jobs %}
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <img src="https://source.unsplash.com/1200x900/?job,deffense" class="d-block w-100" alt="...">
+          
+          <div class="card-body">
+            <p class="card-text"><strong>Title:</strong>{{job.title}}<br /><strong>Description:</strong>{{job.description}}<br /><strong>Salary:</strong>{{job.salary}}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img src="https://source.unsplash.com/1200x900/?girl,water" class="d-block w-100" alt="...">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div> 
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img src="https://source.unsplash.com/1200x900/?job,men" class="d-block w-100" alt="...">
-            <div class="card-body">
-              <p class="card-text"><strong>Title:</strong>Job 1<br /><strong>Description:</strong>Job Description<br /><strong>Salary:</strong>4K-8K</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img src="https://source.unsplash.com/1200x900/?girl,water" class="d-block w-100" alt="...">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div> 
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img src="https://source.unsplash.com/1200x900/?job,men" class="d-block w-100" alt="...">
-            <div class="card-body">
-              <p class="card-text"><strong>Title:</strong>Job 1<br /><strong>Description:</strong>Job Description<br /><strong>Salary:</strong>4K-8K</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img src="https://source.unsplash.com/1200x900/?job,army" class="d-block w-100" alt="...">
-            <div class="card-body">
-              <p class="card-text"><strong>Title:</strong>Job 2<br /><strong>Description:</strong>Job Description<br /><strong>Salary:</strong>4K-8K</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                </div>
-              </div>
+              <small class="text-muted"></small>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
+    {% endfor %}
+    
   </div>
+</div>
+  
 
--->
-<h1 align='center'>Your Jobs</h1>
-<table style="border-collapse: collapse; width: 80%; table-align='center">
+
+
+{% elif request.user.is_organisation %}
+<h1 align='center'>Your Posted Jobs</h1>
+<table style="border-collapse: collapse; width: 80%; table-align='center" class="jobs-posted">
   <thead>
     <tr>
       <th><h3>Title</th>
@@ -170,21 +117,22 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>Example Job Title</td>
-      <td>March 1, 2023</td>
-      <td>Full-Time</td>
-      <td><button>View</button></td>
-    </tr>
-    <tr>
-      <td>Another Job Title</td>
-      <td>February 28, 2023</td>
-      <td>Part-Time</td>
-      <td><button>View</button></td>
-    </tr>
-    <!-- Add more rows as needed -->
+    {% for job in jobs %}
+      <tr>
+        <td>{{job.title}}</td>
+        <td>{{job.posted_on}}</td>
+        <td>{{job.type}}</td>
+        {% comment %} <td><button>View</button></td> {% endcomment %}
+      </tr>
+    {% endfor %}
+    
   </tbody>
 </table>
+{% else %}
+<center><a href="/register" ><button class="btn btn-outline-primary" type="submit" style="margin-top: 3em;margin-bottom:3em;">Login/Register</button></a></center>
+{% endif %}
+
+
 
 
 {% endblock body %}

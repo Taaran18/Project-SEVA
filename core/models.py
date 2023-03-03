@@ -72,8 +72,8 @@ class User(AbstractUser):
     def __str__(self):
         return self.first_name
     def save(self, *args, **kwargs):
-        if not self.id:
-            self.username = self.email
+    
+        self.username = self.email
         super(User, self).save(*args, **kwargs)
     def is_organisation(self):
         return self.user_type=="organisation"

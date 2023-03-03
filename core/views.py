@@ -5,8 +5,11 @@ from core.models import Contact
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from .forms import *
+from .models import *
 def index(request):
-    return render(request, 'index.html')
+    jobs = Job.objects.all()
+    context = {'jobs':jobs}
+    return render(request, 'index.html',context)
 
 def about(request):
     return render(request, 'about.html') 
