@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpRequest, JsonResponse, Http404
+from datetime import datetime
+from core.models import Contact
+from django.contrib import messages
 
 def index(request):
     return render(request, 'index.html')
