@@ -1,0 +1,46 @@
+body{
+ text-align: center;
+}
+
+.registration-form{
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    padding: 1em 2em;
+
+    
+}
+.registration-form table{
+    margin: auto;
+}
+.registration-form table td{
+    width: 10em;
+    max-width: 15em;
+    padding: 0.5em;
+
+}
+.registration-form td input, .registration-form td select, .registration-form textarea{
+    max-width: 100%;
+    height: 1.5em;
+    text-align: center;
+    
+}
+
+
+#reg-form{
+    width: fit-content;
+
+    min-height: 50vh;
+    height: fit-content;
+    margin: auto;
+    overflow-y: scroll;
+    box-shadow:2px 4px 9px 8px #e2e2e2;
+    margin-top:  4em;
+}
+
+ #org-form{
+     display: none;
+ }
+ #user-form{
+     display: block;
+ }
