@@ -51,7 +51,7 @@ class User(AbstractUser):
 
     ## User Fields
     user_state = models.CharField(max_length=60,null=True)
-    user_city = models.CharField(nax_length=60,null=True)
+    user_city = models.CharField(max_length=60,null=True)
     user_skills = models.TextField(help_text='Enter your skills separated by comma: skill1, skill2')
     
     ## Organisation Fields
