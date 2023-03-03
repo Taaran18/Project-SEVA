@@ -84,3 +84,6 @@ def apply_to_job(request):
     pass
 def profile(request):
     return render(request,'profile.html')
+
+def new(request):
+    return render(request,'new.html')
