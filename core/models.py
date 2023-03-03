@@ -56,11 +56,11 @@ JOB_TYPE = (
             ('Full-Time','Full-Time'),
             )
 class User(AbstractUser):
-    mobile = models.BigIntegerField(name='mobile')
-    domain = models.CharField(choices=DOMAINS,max_length=255) 
-    user_type = models.CharField(choices=USER_TYPE, max_length=50)
+    mobile = models.BigIntegerField(name='mobile',null=True)
+    domain = models.CharField(choices=DOMAINS,max_length=255,null=True) 
+    user_type = models.CharField(choices=USER_TYPE, max_length=50,null=True)
     photo = models.ImageField(name='photo',upload_to='images',null=True,blank=True)
-    about = models.CharField(max_length=255)
+    about = models.CharField(max_length=255,null=True)
     ## User Fields
     user_state = models.CharField(name="state",max_length=60,null=True)
     user_city = models.CharField(name="city", max_length=60,null=True)
@@ -69,6 +69,8 @@ class User(AbstractUser):
     ## Organisation Fields
     organisation_name = models.CharField(name="organisation_name",max_length=200,null=True) 
     organisation_designation = models.CharField(name="designation", max_length=150,null=True)
+    def __str__(self):
+        return self.first_name
     def save(self, *args, **kwargs):
         if not self.id:
             self.username = self.email
@@ -89,7 +91,7 @@ class Contact(models.Model):
 
 class Job(models.Model):
     title = models.CharField(max_length=155)
-    company = models.ForeignKey(to=User, limit_choices_to={'user_type':'is_organisation'}, on_delete=models.CASCADE,related_name='posted_by')
+    company = models.ForeignKey(to=User, limit_choices_to={'user_type':'organisation'}, on_delete=models.CASCADE)
     short_description = models.CharField(max_length=255)
     description = models.TextField()
     salary = models.CharField(max_length=50)
@@ -97,11 +99,11 @@ class Job(models.Model):
     openings = models.PositiveIntegerField()
     location = models.CharField(max_length=100)
     posted_on = models.DateTimeField(auto_now_add=True)
-    duration = models.DurationField()
+    duration = models.CharField(max_length=80)
     job_type = models.CharField(choices=JOB_TYPE,max_length=155)
     apply_by = models.DateField()
     start_date = models.DateField()
-    applicants = models.ManyToManyField(User,limit_choices_to={'user_type':'is_normal'})
+    applicants = models.ManyToManyField(User,limit_choices_to={'user_type':'normal'},related_name='posted_by', null=True, blank=True)
 
 
 
