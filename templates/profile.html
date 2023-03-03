@@ -1,9 +1,26 @@
 {% extends 'base.html' %}
 
 {% block title %}Profile{% endblock title %}
+{% block css %}
+<style>
+  body{
+    text-align:center;
+  }
+  ul{
 
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    padding: 10px;
+  }
+</style>
+{% endblock css %}
+
+{% block js %}
+
+{% endblock js %}
 {% block body %}
-<div style="display: flex; flex-direction: row;">
+<div style="display: flex; flex-direction: row;justify-content:center;padding: 50px;">
     <img src="profile-photo.jpg" style="width: 200px; height: 200px; margin-right: 20px;">
     <div style="display: flex; flex-direction: column; justify-content: center;">
       <h2>John Doe</h2>
@@ -24,7 +41,7 @@
     <!-- Add more work experience as needed -->
   </ul>
   
-  <h3>Education</h3>
+  <h3 style=padding: 50px;>Education</h3>
   <ul>
     <li>
       <strong>Degree Name</strong> - University Name (Graduation Date)<br>
