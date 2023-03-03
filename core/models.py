@@ -44,7 +44,7 @@ DOMAINS = (
 ("Telecom Sector ", "Telecom Sector "),
 ("Textile Sector", "Textile Sector"),
 ("Tourism and Hospitality", "Tourism and Hospitality"),
-          )
+)
 class User(AbstractUser):
     mobile = models.BigIntegerField(name='mobile')
     domain = models.CharField(choices=DOMAINS,max_length=255) 
