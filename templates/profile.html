@@ -13,6 +13,15 @@
     margin: 0;
     padding: 10px;
   }
+  .profile-block{
+    height: 85vh;
+    overflow-y: scroll;
+    width:fit-content;
+    padding: 2em 5em;
+    border: 5px solid rgb(82, 151, 255);
+    margin: auto;
+    border-radius: 0.5em;
+  }
 </style>
 {% endblock css %}
 
@@ -20,6 +29,8 @@
 
 {% endblock js %}
 {% block body %}
+
+<section class="profile-block">
 <div style="display: flex; flex-direction: row;justify-content:center;padding: 50px;">
     <img src="profile-photo.jpg" style="width: 200px; height: 200px; margin-right: 20px;">
     <div style="display: flex; flex-direction: column; justify-content: center;">
@@ -54,5 +65,5 @@
     <!-- Add more education as needed -->
   </ul>
   
-
+</section>
 {% endblock body %}

@@ -20,12 +20,14 @@ from django.conf.urls.static import static
 from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
+    path('', index, name='home'),
     path('register',registration),
     path("about", about, name='about'),
     path("services", services, name='services'),
     path("contact", contact, name='contact'), 
-    path('login',login),
+    path('login',login_user),
+    path('logout',logout_user),
+    path('create-job',create_job),
     path('register/user', user_registration),
     path('register/organisation',organisation_registration),
     path('resume',resume),

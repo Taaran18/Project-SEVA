@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpRequest, JsonResponse, Http404
 from datetime import datetime
 from core.models import Contact
 from django.contrib import messages
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
 from .forms import *
 from .models import *
 def index(request):
@@ -17,8 +17,25 @@ def about(request):
 def services(request):
     return render(request, 'services.html')
  
-def login(request):
+def login_user(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+    if request.method=="POST":
+        print(request.POST)
+        user = authenticate(username=request.POST.get('username',None),password=request.POST.get('password',None))
+        print(user)
+        if user is not None:
+            login(request,user)
+            return redirect('home')
+        else:
+            messages.error(request,'Invalid Email and Password')
+
     return render(request,'login.html')
+
+def logout_user(request):
+    logout(request)
+    return redirect('home')
+
 def contact(request):
     if request.method == "POST":
         name = request.POST.get('name')
@@ -51,6 +68,16 @@ def user_registration(request):
             return HttpRequest('/login')
     return render(request,'user_reg.html',{'form': form})
 
+
+def create_job(request):
+    form = JobForm()
+    if request.method=="POST":
+        form = JobForm(request.POST)
+        if form.is_valid():
+            form.save()
+            
+            # return redirect('manage-jobs')
+    return render(request,'job-create.html',{'form':form})
 def resume(request):
     return render(request,'resume.html')
 def apply_to_job(request):
