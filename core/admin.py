@@ -42,7 +42,7 @@ class CustomUserAdmin(UserAdmin):
                 )
     
     def get_inlines(self, request, obj=None):
-        if obj:
+        if obj and obj.user_type=="organisation":
             return [
              WorkInline, EducationInline
             ]
