@@ -47,3 +47,8 @@ def user_registration(request):
             form.save()
             return HttpRequest('/login')
     return render(request,'user_reg.html',{'form': form})
+
+def resume(request):
+    return render(request,'resume.html')
+def apply_to_job(request):
+    pass
