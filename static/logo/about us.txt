@@ -1,0 +1,7 @@
+We call ourselves Project SEVA because our goal is to serve our country's heroes who though being retired or discharged still have the will and the motive to serve the country.
+Our website acts as a mediator between the user ( retired and discharged soldiers) who wants to find a job and the organizations who want to provide employment opportunities to experienced and qualified personnel.
+Our website has features like an automatic resume builder, application progress bar, and chat system that can answer Inthe queries of the user.
+In this way, we aim to help both parties involved have a smooth and efficient workflow.
+We made this project on 3 March 2023 as a project for Poornima Hackathon. 
+Our team consists of Akshay Kumar goyal, Taaran Jain, Abhijeth Pillai, and Navdeep Doriya.
+We aim to make this project successful so that we can serve the people who have given their blood and sweat so that they can defend all of us from any threats.
