@@ -45,19 +45,29 @@ DOMAINS = (
 ("Textile Sector", "Textile Sector"),
 ("Tourism and Hospitality", "Tourism and Hospitality"),
 )
+
+USER_TYPE = (
+             ('organisation','organisation'),
+             ('normal','normal'),
+             )
 class User(AbstractUser):
     mobile = models.BigIntegerField(name='mobile')
     domain = models.CharField(choices=DOMAINS,max_length=255) 
-
+    user_type = models.CharField(choices=USER_TYPE, max_length=50)
+    photo = models.ImageField(name='photo',upload_to='images')
+    
     ## User Fields
-    user_state = models.CharField(max_length=60,null=True)
-    user_city = models.CharField(max_length=60,null=True)
-    user_skills = models.TextField(help_text='Enter your skills separated by comma: skill1, skill2')
+    user_state = models.CharField(name="state",max_length=60,null=True)
+    user_city = models.CharField(name="city", max_length=60,null=True)
+    user_skills = models.TextField(name="skills", help_text='Enter your skills separated by comma: skill1, skill2')
     
     ## Organisation Fields
-    organisation_name = models.CharField(max_length=200,null=True) 
-    organisation_designation = models.CharField(max_length=150,null=True)
-
+    organisation_name = models.CharField(name="organisation_name",max_length=200,null=True) 
+    organisation_designation = models.CharField(name="designation", max_length=150,null=True)
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.username = self.email
+        super(User, self).save(*args, **kwargs)
 
 class Contact(models.Model):
     name = models.CharField(max_length=122)
