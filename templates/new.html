@@ -3,56 +3,245 @@
 {% block title %}new{% endblock title %}
 {% block css %}
 <style>
-  body{
-    text-align:center;
-  }
-  ul{
-
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    padding: 10px;
-  }
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: rgba(255, 134, 91, 0.1);
+        background-clip: border-box;
+        border: 0 solid rgba(0, 0, 0, 0.125);
+        border-radius: 0.5rem;
+    }
+    
+    .card-body {
+        flex: 1 1 auto;
+        min-height: 1px;
+        padding: 15px;
+        box-shadow: 7px 7px 6px #cccccc;
+    }
+    
+    .internship-header {
+        border-bottom: 1px solid rgba(40, 107, 218, 0.5);
+        padding-bottom: 2rem;
+        margin-bottom: 6rem;
+    }
+    
+    .internship-item .internship-primary-info {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    
+    .img-thumbnail {
+        padding: 0.25rem;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: 0.5rem;
+    }
+    
+    .internship-item .img-thumbnail {
+        margin-bottom: 1rem;
+        max-width: 8rem;
+    }
+    
+    .internship-item .job-attributes {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .internship-item .job-attributes li {
+        margin-bottom: 0.3rem;
+    }
+    
+    .internship-item .job-attributes li i {
+        color: #ef7e22;
+        display: inline-block;
+        margin-right: 0.7rem;
+        width: 2rem;
+        text-align: center;
+        font-size: 1.4em;
+    }
+    
+    .internship-item .job-supplement-attributes {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+    }
+    
+    .internship-item .job-supplement-attributes li {
+        margin-bottom: 2rem;
+        display: flex;
+    }
+    
+    .internship-item .internship-tags {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+    }
+    
+    .badge {
+        font-weight: 300;
+        background-color: rgba(40, 107, 218, 0.22);
+        color: #0450d0;
+        padding: 1.2rem 1.7rem;
+        margin: 0 0.5rem 0.5rem 0;
+    }
+    .internship-item p {
+        font-size: 1.5rem;
+        line-height: 2.3rem;
+    }
+    
+    .internship-item {
+        margin: 4rem 1rem;
+    }
+    
+    .job-title {
+        margin-bottom: 0.5rem;
+    }
+    
+    .company-name {
+        margin-bottom: 0.7rem;
+    }
+    
+    .internship-item .job-attributes {
+        margin: 2.5rem 0;
+    }
+    
+    .job-attributes {
+        padding-left: 0;
+        list-style: none;
+    }
+    
+    .internship-item li {
+        font-size: 15px;
+        color: #000;
+    }
+    
+    .internship-item .job-supplement-attributes li i {
+        color: #ef7e22;
+        display: inline-block;
+        margin-right: 0.7rem;
+        width: 2rem;
+        text-align: center;
+        font-size: 1.2em;
+    }
+    
+    .internship-item .job-supplement-attributes li h5 {
+        margin-bottom: 0.5rem;
+    }
+    
+    .card-body section {
+        margin: 0 0 3rem;
+        padding: 0;
+    }
+    
+    .card-body section p {
+        font-size: 1.5rem;
+        line-height: 2.3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .card-body section ol {
+        padding-left: 4rem;
+    }
+    
+    .btn-wrap {
+        margin: 1rem;
+        text-align: center;
+    }
+    
+    .card {
+        margin-bottom: 3rem;
+    }
 </style>
 {% endblock css %}
+{% block body %}  
+<div class="prdctCntDetl">
+    <div class="lernCrsDivTbl">
+        <div class="internship-detail-body">
+            <div class="card">
+                <div class="card-body">
+                    <div class="internship-item">
+                        <div class="internship-header1">
+                            <h2 class="job-title">PROJECT MANAGER</h2>
+                            <h4 class="company-name">Cresco Housing Projects</h4>
 
-{% block js %}
+                            <ul class="job-attributes">
+                                <li class="wfh"><i class="fa fa-home"></i><span>Monthly Based</span></li>
+                                <li class="location"><i class="fa fa-map-marker"></i><span>Hyderabad, </span></li>
+                            </ul>
+                        </div>
+                        <ul class="job-supplement-attributes">
+                            <li class="start-date">
+                                <i class="fa fa-play-circle"></i>
+                                <div>
+                                    <h5><b>Start date</b></h5><span>Immediately</span>
+                                </div>
+                            </li>
+                            <li class="duration">
+                                <i class="fa fa-calendar-o"></i>
+                                <div>
+                                    <h5><b>Duration</b></h5><span>12 Months</span>
+                                </div>
+                            </li>
+                            <li class="stipend">
+                                <i class="fa fa-database"></i>
+                                <div>
+                                    <h5><b>Stipend</b></h5><span> 50000</span>
+                                </div>
+                            </li>
+                            <li class="apply-by">
+                                <i class="fa fa-hourglass"></i>
+                                <div>
+                                    <h5><b>Apply by</b></h5><span>2021-11-02</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <section>
+                        <h3 class="company-name">About the program</h3>
+                        <p></p>
+                        <p>The job involves monitoring the progress of the works as per the specifications and drawings
+                            that the architects provide from time to time.</p>
+                        .
+                        <p></p>
+                    </section>
+                    <section>
+                        <h3 class="company-name">Perks</h3>
+                        <p></p>
+                        <p>Travel allowances given</p>
+                        <p></p>
+                    </section>
+                    <section>
+                        <h3 class="company-name">Who can apply?</h3>
+                        <p>Only those Senior Citizen can apply who:</p>
 
-{% endblock js %}
-{% block body %}
-<div style="display: flex; flex-direction: row;justify-content:center;padding: 50px;">
-    <img src="profile-photo.jpg" style="width: 200px; height: 200px; margin-right: 20px;">
-    <div style="display: flex; flex-direction: column; justify-content: center;">
-      <h2>NAME</h2>
-      <p>MOBILE NUMBER</p>
+                        <ol>
+                            <li> are from B.Arch</li>
+                            <li> and specialisation from B.Arch</li>
+                            <li>are available for duration of 12 Months </li>
+                            <li>have relevant skills and interests</li>
+                        </ol>
+                    </section>
+
+                    <section>
+                        <h3 class="company-name">Terms of Engagement</h3>
+                        <p></p>
+                        <p>Short term</p>
+
+                        <p></p>
+                    </section>
+
+                    <section>
+                        <h3 class="company-name">Number of openings</h3>
+                        <p><b>1</b></p>
+                    </section>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  
-  <h3>Work Experience</h3>
-  <ul>
-    <li>
-      <strong>Job Title</strong> - Company Name (Start Date - End Date)<br>
-      Job Description
-    </li>
-    <li>
-      <strong>Job Title</strong> - Company Name (Start Date - End Date)<br>
-      Job Description
-    </li>
-    <!-- Add more work experience as needed -->
-  </ul>
-  
-  <h3 style=padding: 50px;>Education</h3>
-  <ul>
-    <li>
-      <strong>Degree Name</strong> - University Name (Graduation Date)<br>
-      Field of Study
-    </li>
-    <li>
-      <strong>Degree Name</strong> - University Name (Graduation Date)<br>
-      Field of Study
-    </li>
-    <!-- Add more education as needed -->
-  </ul>
-  
-
+</div>
 {% endblock body %}
