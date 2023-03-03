@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block body %}
+<div style="display: flex; flex-direction: row;">
+    <img src="profile-photo.jpg" style="width: 200px; height: 200px; margin-right: 20px;">
+    <div style="display: flex; flex-direction: column; justify-content: center;">
+      <h2>John Doe</h2>
+      <p>Mobile: 555-1234</p>
+    </div>
+  </div>
+  
+  <h3>Work Experience</h3>
+  <ul>
+    <li>
+      <strong>Job Title</strong> - Company Name (Start Date - End Date)<br>
+      Job Description
+    </li>
+    <li>
+      <strong>Job Title</strong> - Company Name (Start Date - End Date)<br>
+      Job Description
+    </li>
+    <!-- Add more work experience as needed -->
+  </ul>
+  
+  <h3>Education</h3>
+  <ul>
+    <li>
+      <strong>Degree Name</strong> - University Name (Graduation Date)<br>
+      Field of Study
+    </li>
+    <li>
+      <strong>Degree Name</strong> - University Name (Graduation Date)<br>
+      Field of Study
+    </li>
+    <!-- Add more education as needed -->
+  </ul>
+  
+
+{% endblock body %}
