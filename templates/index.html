@@ -117,8 +117,8 @@
   position: relative;
   -webkit-animation-name: slide_animation;
   animation-name: slide_animation;
-  -webkit-animation-duration: 33s;
-  animation-duration: 33s;
+  -webkit-animation-duration: 25s;
+  animation-duration: 25s;
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
   -webkit-animation-direction: alternate;
@@ -246,10 +246,10 @@ socialThreeDiv {
     {% for job in jobs %}
       <div class="col-md-4">
         <div class="card mb-4 shadow-sm">
-          <img src="https://source.unsplash.com/1200x900/?job,deffense" class="d-block w-100" alt="...">
+          <img src="https://ufpro.com/storage/app/media/Blog/TCCC%20-%20Tactical%20field%20care/TCCC-tactical%20field%20care%20-%20hero.jpg" class="d-block w-100" alt="...">
           
           <div class="card-body">
-            <p class="card-text"><strong>Title:</strong>{{job.title}}<br /><strong>Description:</strong>{{job.description}}<br /><strong>Salary:</strong>{{job.salary}}</p>
+            <p class="card-text"><strong>Title:</strong>{{job.title}}<br /><strong>Description:</strong>{{job.short_description}}<br /><strong>Salary:</strong>{{job.salary}}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
                 <a class="new-group" href="job/{{job.id}}"><button type="button">View</button></a>
@@ -271,8 +271,8 @@ socialThreeDiv {
     <tr>
       <th><h3>Title</th>
       <th><h3>Posted</th>
-      <th><h3>Application</th>
-      <th></th>
+      <th><h3>Applicants</th>
+      
     </tr>
   </thead>
   <tbody>
@@ -280,8 +280,7 @@ socialThreeDiv {
       <tr>
         <td>{{job.title}}</td>
         <td>{{job.posted_on}}</td>
-        <td>{{job.type}}</td>
-         <td><a href="/applicants/{{job.id}}">View</a></td> 
+         <td><a href="/applicants/{{job.id}}" style="border:2px solid blue;padding:0.3em;border-radius:5px;">View</a></td> 
       </tr>
     {% endfor %}
     
@@ -291,7 +290,7 @@ socialThreeDiv {
 {% endif %}
 
 
-  <h1 style="text-align: center;">Photo Gallery</h1>
+  <h1 style="text-align: center;margin-top:5em">Photo Gallery</h1>
   <div class="slider-frame">
       <div class="slide-images">
               <div class="img-container">

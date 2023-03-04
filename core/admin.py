@@ -30,7 +30,7 @@ class CustomUserAdmin(UserAdmin):
     list_filter = ('user_type',)
     fieldsets = (
         (None, {'fields': ('email', 'password','user_type','photo')}),
-        ('Personal info', {'fields': ('first_name', 'last_name')}),
+        ('Personal info', {'fields': ('first_name', 'last_name','address')}),
         ('Other info', {'fields': ('about','mobile','skills','user_dob')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
@@ -67,7 +67,9 @@ class JobAdmin(admin.ModelAdmin):
 
 class AppliedJobAdmin(admin.ModelAdmin):
     pass
-
+class ContactAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Contact, ContactAdmin)
 admin.site.register(AppliedJob, AppliedJobAdmin)
 admin.site.register(Job, JobAdmin)
 
