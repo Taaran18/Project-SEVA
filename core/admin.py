@@ -29,11 +29,13 @@ class CustomUserAdmin(UserAdmin):
     list_display = ('first_name', 'user_type')
     list_filter = ('user_type',)
     fieldsets = (
-        (None, {'fields': ('email', 'password','user_type')}),
+        (None, {'fields': ('email', 'password','user_type','photo')}),
         ('Personal info', {'fields': ('first_name', 'last_name')}),
+        ('Other info', {'fields': ('about','mobile','skills','user_dob')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
-        ('Contact info', {'fields': ('mobile',)}),)
+        )
+        
     add_fieldsets = (
                     ('Personal Information',{
                      'fields': ('username','email','mobile','user_type','password1','password2')
@@ -42,7 +44,7 @@ class CustomUserAdmin(UserAdmin):
                 )
     
     def get_inlines(self, request, obj=None):
-        if obj and obj.user_type=="organisation":
+        if obj and obj.user_type!="organisation":
             return [
              WorkInline, EducationInline
             ]

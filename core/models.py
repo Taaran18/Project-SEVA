@@ -3,6 +3,10 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
+import json
+from django.utils import timezone
+from django.utils.timesince import timesince
+from datetime import datetime, timedelta
 DOMAINS = (
 ("Aerospace and Aviation Sector", "Aerospace and Aviation Sector"),
 ("Agriculture", "Agriculture"),
@@ -61,14 +65,17 @@ class User(AbstractUser):
     user_type = models.CharField(choices=USER_TYPE, max_length=50,null=True)
     photo = models.ImageField(name='photo',upload_to='images',null=True,blank=True)
     about = models.CharField(max_length=255,null=True)
+    address = models.CharField(max_length=255)
     ## User Fields
     user_state = models.CharField(name="state",max_length=60,null=True)
     user_city = models.CharField(name="city", max_length=60,null=True)
     user_skills = models.TextField(name="skills", help_text='Enter your skills separated by comma: skill1, skill2')
-    
+    user_dob = models.DateField(null=True)
     ## Organisation Fields
     organisation_name = models.CharField(name="organisation_name",max_length=200,null=True) 
     organisation_designation = models.CharField(name="designation", max_length=150,null=True)
+    def get_skills(self):
+        return list(map(lambda x:x.strip(),list(self.skills.split(','))))
     def __str__(self):
         return self.first_name
     def save(self, *args, **kwargs):
@@ -79,6 +86,10 @@ class User(AbstractUser):
         return self.user_type=="organisation"
     def is_normal(self):
         return self.user_type=="normal"
+    def get_age(self):
+        if self.user_type == "normal" and self.user_dob:
+            return timesince(self.user_dob, datetime.now())
+        return ''
 class Contact(models.Model):
     name = models.CharField(max_length=122)
     email = models.CharField(max_length=122)
@@ -121,6 +132,7 @@ class Work(models.Model):
     user = models.ForeignKey(User,limit_choices_to={'user_type':'is_normal'},on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     institute = models.CharField(max_length=200)
+    desc = models.CharField(max_length=255)
     from_year = models.PositiveIntegerField()
     to_year = models.PositiveIntegerField()
 
