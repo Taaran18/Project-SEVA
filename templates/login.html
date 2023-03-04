@@ -12,6 +12,8 @@
         <style>
             .registration-form{
                 box-shadow: 1px 5px 2px 2px #e2e2e2;
+                width: fit-content;
+                padding:4em;
             }
         </style>
     {% endblock css %}
@@ -22,7 +24,7 @@
         
             <form method="POST" class="registration-form">
                 <center>
-                    <span class="heading" style="font-size: 1.5em;">Login</span>
+                    <span class="heading" style="font-size: 1.5em; margin-bottom:1em;">Login</span>
                 </center>
             
             {% csrf_token %}

@@ -37,6 +37,12 @@
       <li class="nav-item">
         <a class="nav-link" href="/contact">Contact Us</a>
       </li>
+      <li class="nav-item">
+        {% if request.user.is_normal %}
+          <a class="nav-link" href="/resume/{{request.user.id}}">Build Resume</a>  
+        {% endif %}
+        
+      </li>
     
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -46,8 +52,11 @@
                  Welcome, {{request.user.first_name}}
                </a>
                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                 <a class="dropdown-item" href="/profile">Edit Profile</a>
+                {% if request.user.is_normal %}
+                 <a class="dropdown-item" href="/profile">Edit Profile</a> 
+                
                  <a class="dropdown-item" href="/myjobs">My Jobs</a>
+                 {% endif %}
                  <div class="dropdown-divider"></div>
                  <a class="dropdown-item" href="/logout">Logout</a>
                </div>

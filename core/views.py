@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from .forms import *
 from .models import *
 def index(request):
@@ -127,7 +128,10 @@ def job_apply(request,id):
     return HttpResponse('nothing worked'+request.user.user_type)
 
 def profile(request):
-    return render(request,'profile.html')
+    work = Work.objects.filter(user=request.user)
+    edu = Education.objects.filter(user=request.user)
+    return render(request,'profile.html',{'work':work,'edu':edu})
+
 def alljobs(request):
     jobs = Job.objects.all()
     return render(request,'jobs.html',{'jobs':jobs})
@@ -186,3 +190,16 @@ def applicants(request,id):
 
 
     return render(request,'applicants.html',{'applicants':applicants,'job_id':id, 'zipdata':zip(applicants,applied_jobs)})
+
+@csrf_exempt
+def add_work(request):
+    data = request.POST
+    w = Work.objects.create(user=request.user,title=data['title'],institute=data['institute'],desc=data['desc'],from_year=data['from_year'],to_year=data['to_year'])
+    w.save()
+    return HttpResponse(status=200)
+@csrf_exempt
+def add_edu(request):
+    data = request.POST
+    w = Education.objects.create(user=request.user,title=data['title'],institute=data['institute'],from_year=data['from_year'],to_year=data['to_year'])
+    w.save()
+    return HttpResponse(status=200)

@@ -12,14 +12,58 @@
     margin: 0;
     padding: 10px;
   }
-  .profile-block{
+/*   .profile-block{
     height: 85vh;
     overflow-y: scroll;
     width:fit-content;
     padding: 2em 5em;
     border: 5px solid rgb(82, 151, 255);
     margin: auto;
-    border-radius: 0.5em;
+    border-radius: 0.5em; */
+  }
+  .popup-window{
+    position: absolute;
+    display:none;
+    top:0;
+    left:0;
+    text-align: center;
+    min-width: 100vw;
+    min-height:100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+  }
+  .popup{
+    position: absolute;
+
+    background-color: #fff;
+    width: fit-content;
+    padding: 2em 5em;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+  }
+  .popup td{
+    text-align: left;
+  }
+  .popup .close-btn{
+    position:absolute;
+    top:0;
+    right:0;
+    background-color:red;
+    color:#fff;
+    padding: 0.5em;
+    cursor: pointer;
+  }
+  #work-section{
+    display: none;
+    text-align: center;
+
+  }
+  #education-section{
+    display: none;
+  }
+  ul li{
+    text-align: left;
   }
 </style>
 {% endblock css %}
@@ -32,39 +76,154 @@
 <form>
   <section class="profile-block">
     <div style="display: flex; flex-direction: row;justify-content:center;padding: 50px;">
-      <img src="profile-photo.jpg" style="width: 200px; height: 200px; margin-right: 20px;">
+      {# <img src="profile-photo.jpg" style="width: 200px; height: 200px; margin-right: 20px;"> #}
       <div style="display: flex; flex-direction: column; justify-content: center;">
-        <label for="name">Name:</label>
-          <input type="text" id="name" name="name">
-        <label for="mobile">Mobile Number:</label>
-          <input type="text" id="mobile" name="mobile">
+        <h2 style="text-decoration:underline;">Welcome {{request.user.first_name}}</h2>
+        <hr><hr>
       </div>
     </div>
     <h3>Work Experience</h3>
 <ul>
-  <li>
-    <label for="jobtitle">Job Title:</label>
-    <input type="text" id="jobtitle" name="jobtitle">
-  </li>
-  <li>
-    <label for="jobtitle">Job Title:</label>
-    <input type="text" id="jobtitle" name="jobtitle">
-  </li>
-  <!-- Add more work experience as needed -->
+  {% for exp in work %}
+    <li>
+      <b>Title</b>{{exp.title}}<br/>
+      <b>Institute</b>{{exp.institute}}<br/>
+      <b>Description</b>{{exp.desc}}<br/>
+      <b>From Year</b>{{exp.from_year}}<br/>
+      <b>To Year</b>{{exp.to_year}}<br/>
+    </li>
+  <hr />
+  {% endfor %}
+  <li><button class="add-work">Add More</button></li>
+  
 </ul>
 
 <h3 style=padding: 50px;>Education</h3>
 <ul>
-  <li>
-    <label for="degreetitle">Degree Title:</label>
-    <input type="text" id="degreetitle" name="degreetitle">
-  </li>
-  <li>
-    <label for="degreetitle">Degree Title:</label>
-    <input type="text" id="degreetitle" name="degreetitle">
-  </li>
-  <!-- Add more education as needed -->
+  {% for ed in edu %}
+    <li>
+      <b>Title</b>{{ed.title}}<br/>
+      <b>Institute</b>{{ed.institute}}<br/>
+      <b>From Year</b>{{ed.from_year}}<br/>
+      <b>To Year</b>{{ed.to_year}}<br/>
+    </li>
+    <hr />
+  {% endfor %}
+  <li>  <button class="add-education">Add More</button></li>
+
 </ul>
 </section>
 </form>
+
+<div class="popup-window">
+  <div id="work-section" class="popup">
+    <span class="close-btn">X</span>
+    <form method="POST" id="work-form">
+      {% csrf_token %}
+    <table>
+      <tr>
+        <td class="label">Title</td>
+        <td class="field"><input type="text" name="title" required></td>
+      </tr>
+      <tr>
+        <td class="label">Institute</td>
+        <td class="field"><input type="text" name="institute" required></td>
+      </tr>
+      <tr>
+        <td class="label">Description</td>
+        <td class="field"><input type="text" name="desc" required></td>
+      </tr>
+      <tr>
+        <td class="label">From Year</td>
+        <td class="field"><input type="number" name="from_year" required></td>
+      </tr>
+      <tr>
+        <td class="label">To Year</td>
+        <td class="field"><input type="number" name="to_year" required></td>
+      </tr>
+    </table>
+    <center><input type="submit" class="btn btn-success" name="" id=""></center>
+    </form>
+  </div>
+  <div id="education-section" class="popup">
+    <span class="close-btn">X</span>
+    <form method="POST" id="education-form">
+      {% csrf_token %}
+    <table>
+      <tr>
+        <td class="label">Title</td>
+        <td class="field"><input type="text" name="title" required></td>
+      </tr>
+      <tr>
+        <td class="label">Institute</td>
+        <td class="field"><input type="text" name="institute" required></td>
+      </tr>
+      <tr>
+        <td class="label">From Year</td>
+        <td class="field"><input type="number" name="from_year" required></td>
+      </tr>
+      <tr>
+        <td class="label">To Year</td>
+        <td class="field"><input type="number" name="to_year" required></td>
+      </tr>
+    </table>
+    <center><input type="submit" class="btn btn-success" name="" id=""></center>
+    </form>
+  </div>
+</div>
+
 {% endblock body %}
+{% block script %}
+<script type="text/javascript">
+  $('.close-btn').on('click',function(e){
+    $(".popup-window").css('display','none');
+  });
+  $(".add-work").on('click',function(e) {
+    $(".popup-window").css('display','block');
+    $("#work-section").css('display','block');
+    $("#education-section").css('display','none');
+  });
+  $(".add-education").on('click',function(e) {
+    $(".popup-window").css('display','block');
+    $("#work-section").css('display','none');
+    $("#education-section").css('display','block');
+  });
+
+
+  $("#work-form").on('submit',function (e) {
+    e.preventDefault();
+    $.ajax({
+      url: 'create-work',
+      method: "post",
+      data: {'title':$("input[name='title']").val(),'institute':$("input[name='institute']").val(),
+              'description':$("input[name='desc']").val(),
+            'from_year':$("input[name='from_year']").val(),
+          'to_year':$("input[name='to_year']").val(),},
+      success: function(data){
+        console.log(data);
+        location.reload();
+      },
+      error: function(data){
+        console.log(data);
+      },
+    });
+  });
+  $("#education-form").on('submit',function (e) {
+    e.preventDefault();
+    $.ajax({
+      url: 'create-edu',
+      method: "post",
+      data: {'title':$("input[name='title']").val(),'institute':$("input[name='institute']").val(),
+            'from_year':$("input[name='from_year']").val(),
+          'to_year':$("input[name='to_year']").val(),},
+      success: function(data){
+        console.log(data)
+        location.reload();
+      },
+      error: function(data){
+        console.log(data);
+      },
+    });
+  });
+</script>
+{% endblock script %}

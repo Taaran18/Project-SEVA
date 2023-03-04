@@ -2,13 +2,14 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}All Jobs{% endblock title %}</title>
     {% block css %}
-        <style>
-            body{
+    <style>
+        body{
                 text-align: center;
             }
             .main{
@@ -16,7 +17,7 @@
                 padding: 2em;
             }
             .filters{
-                width: 40vw;
+                width: 20vw;
                 margin-right: 5em;
                 border: 1px solid #292299;
                 border-radius: 1em;
@@ -41,32 +42,57 @@
                 grid-template-columns: repeat(3, 1fr);
             }
             .card{
-
+                position:relative;
+            }
+            .card .company-logo{
+                border-radius: 50%;
+                transform: translate(-50%,-50%);
+                top: -50%;
+            }
+            .tag{
+                position:relative;
+            }
+            .tag #delete{
+                position: absolute;
+                top: -45%;
+                right: -1%;
+                aspect-ratio: 1/1;
+                width: 25px;
+                background-color:darkgray;
+                border-radius: 50%;
+                border: 1px solid #000;
             }
         </style>
     {% endblock css %}
 </head>
+
 <body>
     {% block body %}
-           <section class="main">
-               <section class="filters">
-                   <input type="text" id="tags">
-                   <div class="selectedtags"><div class="tag">skill1<span></span></div></div>
-               </section>
-               <section class="cards">
-                    {% for job in jobs %}
-                        <div class="card">
-                            <img src="/media/{{job.company.photo}}" alt="" class="company-logo">
-                            <div class="job-title">{{job.title}}</div>
-                            <div class="short-description">{{job.short_description}}</div>
-                        </div>
-                    {% endfor %}
-                   
-                    
-               </section>
-           </section>
-           
-
+    <section class="main">
+        <section class="filters">
+            <input type="text" id="tags">
+            <div class="selectedtags">
+                <div class="tag">skill1<span id="delete">X</span></div>
+            </div>
+        </section>
+        <section class="cards">
+            {% for job in jobs %}
+            <div class="card">
+                <img src="/media/{{job.company.photo}}" alt="" class="company-logo">
+                <div class="job-title">{{job.title}}</div>
+                <div class="short-description">{{job.short_description}}</div>
+            </div>
+            {% endfor %}
+        </section>
+    </section>
     {% endblock body %}
 </body>
+{% block script %}
+    <script>
+        $('#delete').on('click',function(e){
+            $(this).parent().remove();
+        });
+        $()
+    </script>
+{% endblock script %}
 </html>

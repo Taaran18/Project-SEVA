@@ -3,7 +3,7 @@ body{
 
 }
 .buttons{
-    margin-top: 2em;
+    margin: 2em auto 1em auto;
 }
 .buttons button{
     font-size: 1.5em;

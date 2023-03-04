@@ -7,6 +7,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Applicants{% endblock title %}</title>
 </head>
+{% block css %}
+    <style>
+    body{
+        text-align:center;
+    }
+    table{
+        margin:auto;
+    }
+    table thead{
+        background-color: lightgray;
+    }
+    table tr{
+        border: 1px solid grey;
+    }
+    table td{
+        width: 15em;
+    }
+
+    </style>
+{% endblock css %}
 <body>
     {% block body %}
         
@@ -27,9 +47,12 @@
                   <td>{{jobrequest.on_date}}</td>
                   <td><a href="/resume/{{jobrequest.user.id}}">View</a></td>
                   <td class="quick-buttons">
-
-                    <a data-id="{{jobrequest.user.id}}" data-jobid="{{jobrequest.job.id}}" data-type="accept" class="btn btn-success" id="action-button">Accept</a>
-                      <a data-id="{{jobrequest.user.id}}" data-type="reject" data-jobid="{{jobrequest.job.id}}" class="btn btn-warning" id="action-button">Reject</a>
+                    {% if jobrequest.closed %}
+                        {{jobrequest.status}}
+                    {% else %}
+                    <a data-id="{{jobrequest.user.id}}" data-jobid="{{jobrequest.job.id}}" data-type="accept" class="btn btn-success action-button" class="">Accept</a>
+                      <a data-id="{{jobrequest.user.id}}" data-type="reject" data-jobid="{{jobrequest.job.id}}" class="btn btn-warning action-button" >Reject</a>
+                      {% endif %}
                   </td>
               </tr>
             {% endfor %}
@@ -40,13 +63,14 @@
 </body>
 {% block script %}
     <script>
-        $("#action-button").on('click',function(e){
+        $(".action-button").on('click',function(e){
             if($(this).data('type') == "accept"){
                 $.ajax({
                     url: '/job/accept/'+$(this).data('id')+'/'+$(this).data('jobid'),
                     method: 'get',
                     success: function(data){
-                        $(this).parent().html('Accepted');
+                        
+                        location.reload();
                     },
                     error: function(data){
                         alert(data);
@@ -54,13 +78,13 @@
 
                 });
             }
-            else{
+            else if($(this).data('type') == "reject"){
                 $.ajax({
                     url: '/job/reject/'+$(this).data('id')+'/'+$(this).data('jobid'),
-
                     method: 'get',
                     success: function(data){
-                        $(this).parent().html('Rejected');
+                        
+                        location.reload();
                     },
                     error: function(data){
                         alert(data);
