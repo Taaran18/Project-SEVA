@@ -26,6 +26,11 @@
         border-bottom: 1px solid rgba(40, 107, 218, 0.5);
         padding-bottom: 2rem;
         margin-bottom: 6rem;
+
+    }
+    .internship-header1{
+        height: 10em;
+        display: flex;
     }
     
     .internship-item .internship-primary-info {
@@ -69,11 +74,13 @@
         display: flex;
         flex-wrap: wrap;
         margin-bottom: 2rem;
+
     }
     
     .internship-item .job-supplement-attributes li {
         margin-bottom: 2rem;
         display: flex;
+        margin-right: 1em;
     }
     
     .internship-item .internship-tags {
@@ -100,10 +107,12 @@
     
     .job-title {
         margin-bottom: 0.5rem;
+        text-transform: capitalize;
     }
     
     .company-name {
         margin-bottom: 0.7rem;
+        text-transform: capitalize;
     }
     
     .internship-item .job-attributes {
@@ -135,11 +144,11 @@
     
     .card-body section {
         margin: 0 0 3rem;
-        padding: 0;
-    }
+        padding: 0    }
     
     .card-body section p {
-        font-size: 1.5rem;
+        font-size: 1.5rem;;
+
         line-height: 2.3rem;
         margin-bottom: 1rem;
     }
@@ -166,12 +175,15 @@
                 <div class="card-body">
                     <div class="internship-item">
                         <div class="internship-header1">
-                            <h2 class="job-title">{{job.title}}</h2>
-                            <h4 class="company-name">{{job.company}}</h4>
-
+                            
+                            <img src="/media/{{job.company.photo}}" style="height: 90%; aspect-ratio:1/1; border-radius:50%; margin-right: 2em;">
+                            <div>
+                                <h2 class="job-title">{{job.title}}</h2>
+                                <h4 class="company-name">{{job.company}}</h4>
+                            </div>
                             <ul class="job-attributes">
                                 {# <li class="wfh"><i class="fa fa-home"></i><span>{{}}</span></li> #}
-                                <li class="location"><i class="fa fa-map-marker"></i><span>{{job.location}}</span></li>
+                                
                             </ul>
                         </div>
                         <ul class="job-supplement-attributes">
@@ -199,6 +211,13 @@
                                     <h5><b>Apply by</b></h5><span>{{job.apply_by}}</span>
                                 </div>
                             </li>
+                            <li class="location">
+                                <i class="fa fa-map-marker"></i>
+                                <div>
+                                    <h5><b>Location</b></h5><span>{{job.location}}</span>
+                                </div>
+                            </li>
+                           
                         </ul>
                     </div>
                     <section>
@@ -221,6 +240,7 @@
                         <h3 class="company-name">Number of openings</h3>
                         <p><b>{{job.openings}}</b></p>
                     </section>
+                    <center><a class="btn btn-success" href="/apply/{{job.id}}" style="font-size: 1.5em">Apply Now</a></center>
                 </div>
             </div>
         </div>

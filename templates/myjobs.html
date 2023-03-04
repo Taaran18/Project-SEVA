@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Jobs{% endblock title %}</title>
+    {% block css %}
+    <style>
+        table{
+            margin: 2em 5em;
+        }
+        </style>
+    {% endblock css %}
+</head>
+<body>
+    {% block body %}
+        <h1 align='center'>Your Applied Jobs</h1>
+        <table style="border-collapse: collapse; width: 80%; table-align='center" class="jobs-posted">
+          <thead>
+            <tr>
+              <th><h3>Title</th>
+              <th><h3>Applied On</th>
+              <th><h3>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for job in jobs %}
+              <tr>
+                <td>{{job.job.title}}</td>
+                <td>{{job.on_date}}</td>
+                <td>{{job.status}}</td>
+                {% comment %} <td><button>View</button></td> {% endcomment %}
+              </tr>
+            {% endfor %}
+            
+          </tbody>
+        </table>
+    {% endblock body %}
+    
+</body>
+</html>

@@ -5,6 +5,7 @@ from core.models import Contact
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 from .forms import *
 from .models import *
 def index(request):
@@ -89,7 +90,7 @@ def create_job(request):
             f.save()
             form.save_m2m()
             
-            # return redirect('manage-jobs')
+            return redirect('home')
     return render(request,'job-create.html',{'form':form})
 def resume(request,id):
     user_obj = get_user_model().objects.get(id=id)
@@ -105,11 +106,31 @@ def resume(request,id):
         print(e)
         return HttpResponse(status=400)
     
-def apply_to_job(request):
-    pass
+@login_required
+def job_apply(request,id):
+    if request.user.user_type == "normal":
+        try:
+            job = Job.objects.get(id=id)
+            job.applicants.add(request.user)
+            job.save()
+            obj = AppliedJob.objects.create(user=request.user,job=job)
+            obj.save()
+            messages.success(request,'Successfully Applied')
+            return redirect('home')
+        except Exception as e:
+            print(e)
+            messages.error(request, 'Job ID doesn\'t exists')
+            return redirect('home')
+    else:
+        messages.error(request, 'Only Users can apply for jobs')
+        return redirect('home')
+    return HttpResponse('nothing worked'+request.user.user_type)
+
 def profile(request):
     return render(request,'profile.html')
-
+def alljobs(request):
+    jobs = Job.objects.all()
+    return render(request,'jobs.html',{'jobs':jobs})
 def view_job(request,id):
     try:
         obj = Job.objects.get(id=id)
@@ -117,3 +138,36 @@ def view_job(request,id):
         return render(request,'viewjob.html',{'job':obj})
     except:
         return Http404
+@login_required
+def myjobs(request):
+    if request.user.user_type == "normal":
+        jobs = AppliedJob.objects.filter(user=request.user)
+        return render(request,'myjobs.html',{'jobs':jobs})
+    else:
+        return redirect('home')
+
+def accept_applicant(request,id):
+    try:
+        obj = AppliedJob.objects.get(id=id)
+        if obj.job.company == request.user:
+            obj.status = "accepted"
+            obj.save()
+            return HttpResponse(status=200)
+        else:
+            return HttpResponse('You are not job poster',status=400)
+    except:
+        return HttpResponse("No Job id exists",status=400)
+    
+
+def reject_applicant(request,id):
+    try:
+        obj = AppliedJob.objects.get(id=id)
+        if obj.job.company == request.user:
+            obj.status = "rejected"
+            obj.save()
+            return HttpResponse(status=200)
+        else:
+            return HttpResponse('You are not job poster',status=400)
+    except:
+        return HttpResponse("No Job id exists",status=400)
+    

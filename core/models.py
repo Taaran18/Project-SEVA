@@ -59,6 +59,11 @@ JOB_TYPE = (
             ('Part-Time','Part-Time'),
             ('Full-Time','Full-Time'),
             )
+JOB_STATUS = (
+    ('applied','applied'),
+    ('accepted','accepted'),
+    ('rejected', 'rejected'),
+)
 class User(AbstractUser):
     mobile = models.BigIntegerField(name='mobile',null=True)
     domain = models.CharField(choices=DOMAINS,max_length=255,null=True) 
@@ -136,5 +141,9 @@ class Work(models.Model):
     from_year = models.PositiveIntegerField()
     to_year = models.PositiveIntegerField()
 
-
+class AppliedJob(models.Model):
+    user = models.ForeignKey(User,limit_choices_to={'user_type':'is_normal'},on_delete=models.CASCADE)
+    on_date = models.DateTimeField(auto_now_add=True)
+    job = models.ForeignKey(Job,on_delete=models.CASCADE)
+    status = models.CharField(choices=JOB_STATUS,max_length=50, default="applied")
     
