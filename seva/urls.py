@@ -30,11 +30,11 @@ urlpatterns = [
     path('create-job',create_job),
     path('register/user', user_registration),
     path('register/organisation',organisation_registration),
-    path('resume',resume),
+    path('resume/<int:id>',resume),
     path('profile',profile),
-    path('new',new),
+    path('job/<int:id>',view_job),
 ]
 
 urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 
-
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

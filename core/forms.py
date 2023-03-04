@@ -1,20 +1,21 @@
 from django import forms
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm
 from .models import *
 class DateInput(forms.DateInput):
     input_type = 'date'
 
-class NormalUserForm(forms.ModelForm):
+class NormalUserForm(UserCreationForm):
     class Meta:
         model = get_user_model()
-        fields = ('photo','first_name','last_name','email','mobile','password','password','domain','state','city','skills')
+        fields = ('photo','first_name','last_name','email','mobile','password1','password2','domain','state','city','address','skills')
 
 
-class OrganizationUserForm(forms.ModelForm):
+class OrganizationUserForm(UserCreationForm):
     class Meta:
         model = get_user_model()
-        fields = ('photo','first_name','last_name','email','mobile','password','password','domain','organisation_name','designation')
+        fields = ('photo','first_name','last_name','email','mobile','password1','password2','domain','organisation_name','address','designation')
 
 class JobForm(forms.ModelForm):
     

@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from django.http import HttpRequest, JsonResponse, Http404
+from django.http import HttpRequest, JsonResponse, Http404, HttpResponse
 from datetime import datetime
 from core.models import Contact
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import get_user_model
 from .forms import *
 from .models import *
 def index(request):
@@ -56,7 +57,10 @@ def organisation_registration(request):
     if request.method == "POST":
         form = OrganizationUserForm(request.POST)
         if form.is_valid():
-            form.save()
+            f = form.save(commit=False)
+            f.user_type = 'organisation'
+            f.save()
+            form.save_m2m()
             return redirect('login')
     return render(request,'org_reg.html',{'form': form})
 def user_registration(request):
@@ -64,26 +68,52 @@ def user_registration(request):
     if request.method == "POST":
         form = NormalUserForm(request.POST)
         if form.is_valid():
-            form.save()
+            f = form.save(commit=False)
+            f.user_type = 'normal'
+            f.save()
+            form.save_m2m()
+
             return redirect('login')
     return render(request,'user_reg.html',{'form': form})
 
 
 def create_job(request):
+    if not request.user.is_authenticated or not request.user.is_organisation:
+        return HttpResponse(status=400)
     form = JobForm()
     if request.method=="POST":
         form = JobForm(request.POST)
         if form.is_valid():
-            form.save()
+            f = form.save(commit=False)
+            f.company=request.user
+            f.save()
+            form.save_m2m()
             
             # return redirect('manage-jobs')
     return render(request,'job-create.html',{'form':form})
-def resume(request):
-    return render(request,'resume.html')
+def resume(request,id):
+    user_obj = get_user_model().objects.get(id=id)
+    works = Work.objects.filter(user=user_obj)
+    educations = Education.objects.filter(user=user_obj)
+    return render(request,'resume.html', {'user':user_obj,'works':works,'educations':educations})
+    try:
+        user_obj = get_user_model().objects.get(id=id)
+        works = Work.objects.filter(user=user_obj)
+        educations = Education.objects.filter(user=user_obj)
+        return render(request,'resume.html', {'user':user_obj,'works':works,'educations':educations})
+    except Exception as e:
+        print(e)
+        return HttpResponse(status=400)
+    
 def apply_to_job(request):
     pass
 def profile(request):
     return render(request,'profile.html')
 
-def new(request):
-    return render(request,'new.html')
+def view_job(request,id):
+    try:
+        obj = Job.objects.get(id=id)
+
+        return render(request,'viewjob.html',{'job':obj})
+    except:
+        return Http404

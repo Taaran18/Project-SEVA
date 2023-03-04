@@ -166,78 +166,60 @@
                 <div class="card-body">
                     <div class="internship-item">
                         <div class="internship-header1">
-                            <h2 class="job-title">PROJECT MANAGER</h2>
-                            <h4 class="company-name">Cresco Housing Projects</h4>
+                            <h2 class="job-title">{{job.title}}</h2>
+                            <h4 class="company-name">{{job.company}}</h4>
 
                             <ul class="job-attributes">
-                                <li class="wfh"><i class="fa fa-home"></i><span>Monthly Based</span></li>
-                                <li class="location"><i class="fa fa-map-marker"></i><span>Hyderabad, </span></li>
+                                {# <li class="wfh"><i class="fa fa-home"></i><span>{{}}</span></li> #}
+                                <li class="location"><i class="fa fa-map-marker"></i><span>{{job.location}}</span></li>
                             </ul>
                         </div>
                         <ul class="job-supplement-attributes">
                             <li class="start-date">
                                 <i class="fa fa-play-circle"></i>
                                 <div>
-                                    <h5><b>Start date</b></h5><span>Immediately</span>
+                                    <h5><b>Start date</b></h5><span>{{job.start_date}}</span>
                                 </div>
                             </li>
                             <li class="duration">
                                 <i class="fa fa-calendar-o"></i>
                                 <div>
-                                    <h5><b>Duration</b></h5><span>12 Months</span>
+                                    <h5><b>Duration</b></h5><span>{{job.duration}}</span>
                                 </div>
                             </li>
                             <li class="stipend">
                                 <i class="fa fa-database"></i>
                                 <div>
-                                    <h5><b>Stipend</b></h5><span> 50000</span>
+                                    <h5><b>Salary</b></h5><span> {{job.salary}}</span>
                                 </div>
                             </li>
                             <li class="apply-by">
                                 <i class="fa fa-hourglass"></i>
                                 <div>
-                                    <h5><b>Apply by</b></h5><span>2021-11-02</span>
+                                    <h5><b>Apply by</b></h5><span>{{job.apply_by}}</span>
                                 </div>
                             </li>
                         </ul>
                     </div>
                     <section>
                         <h3 class="company-name">About the program</h3>
-                        <p></p>
-                        <p>The job involves monitoring the progress of the works as per the specifications and drawings
-                            that the architects provide from time to time.</p>
-                        .
-                        <p></p>
+                        <p>{{job.about_the_program}}</p>
                     </section>
                     <section>
                         <h3 class="company-name">Perks</h3>
                         <p></p>
-                        <p>Travel allowances given</p>
+                        <p>{{job.perks}}</p>
                         <p></p>
                     </section>
                     <section>
                         <h3 class="company-name">Who can apply?</h3>
-                        <p>Only those Senior Citizen can apply who:</p>
-
-                        <ol>
-                            <li> are from B.Arch</li>
-                            <li> and specialisation from B.Arch</li>
-                            <li>are available for duration of 12 Months </li>
-                            <li>have relevant skills and interests</li>
-                        </ol>
+                        <p>{{job.who_can_apply}}</p>
                     </section>
 
-                    <section>
-                        <h3 class="company-name">Terms of Engagement</h3>
-                        <p></p>
-                        <p>Short term</p>
-
-                        <p></p>
-                    </section>
 
                     <section>
                         <h3 class="company-name">Number of openings</h3>
-                        <p><b>1</b></p>
+                        <p><b>{{job.openings}}</b></p>
                     </section>
                 </div>
             </div>
