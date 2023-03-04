@@ -281,7 +281,7 @@ socialThreeDiv {
         <td>{{job.title}}</td>
         <td>{{job.posted_on}}</td>
         <td>{{job.type}}</td>
-        {% comment %} <td><button>View</button></td> {% endcomment %}
+         <td><a href="/applicants/{{job.id}}">View</a></td> 
       </tr>
     {% endfor %}
     

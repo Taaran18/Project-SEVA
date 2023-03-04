@@ -146,28 +146,43 @@ def myjobs(request):
     else:
         return redirect('home')
 
-def accept_applicant(request,id):
+def accept_applicant(request,id, jobid):
     try:
-        obj = AppliedJob.objects.get(id=id)
+        obj = AppliedJob.objects.get(user__id=id, job__id=jobid)
         if obj.job.company == request.user:
             obj.status = "accepted"
+            obj.closed = True
             obj.save()
             return HttpResponse(status=200)
         else:
             return HttpResponse('You are not job poster',status=400)
-    except:
+    except Exception as e:
+        print(e)
         return HttpResponse("No Job id exists",status=400)
     
 
-def reject_applicant(request,id):
+def reject_applicant(request,id, jobid):
     try:
-        obj = AppliedJob.objects.get(id=id)
+        obj = AppliedJob.objects.get(user__id=id, job__id=jobid)
         if obj.job.company == request.user:
             obj.status = "rejected"
+            obj.closed = True
             obj.save()
             return HttpResponse(status=200)
         else:
             return HttpResponse('You are not job poster',status=400)
-    except:
+    except :
         return HttpResponse("No Job id exists",status=400)
     
+
+def applicants(request,id):
+    job = Job.objects.get(id=id)
+    applicants = job.applicants.all()
+    applied_jobs = []
+    
+    for i in applicants:
+        try:applied_jobs.append(AppliedJob.objects.get(job__id=id,user=i))
+        except Exception as e:print(e);continue
+
+
+    return render(request,'applicants.html',{'applicants':applicants,'job_id':id, 'zipdata':zip(applicants,applied_jobs)})

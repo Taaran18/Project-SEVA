@@ -36,8 +36,9 @@ urlpatterns = [
     path('jobs',alljobs),
     path('apply/<int:id>/',job_apply),
     path('myjobs',myjobs),
-    path('job/accept/<int:id>/',accept_applicant),
-    path('job/reject/<int:id>/',reject_applicant),
+    path('applicants/<int:id>/',applicants),
+    path('job/accept/<int:id>/<int:jobid>/',accept_applicant),
+    path('job/reject/<int:id>/<int:jobid>/',reject_applicant),
 ]
 
 urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

@@ -8,7 +8,9 @@
     <title>{% block title %}Applicants{% endblock title %}</title>
 </head>
 <body>
-
+    {% block body %}
+        
+    
     <table>
         <thead>
             <tr>
@@ -19,18 +21,21 @@
             </tr>
           </thead>
           <tbody>
-            {% for applicant in applicants %}
+            {% for applicant,jobrequest in zipdata %}
               <tr>
-                  <td>{{applicant.first_name}}({{applicant.email}})</td>
-                  <td>{{applicant.on_date}}</td>
-                  <td><a href="/resume/{{applicant.user.id}}">View</a></td>
-                  <td class="quick-buttons"><a data-id={{applicant.id}} data-type="accept" class="btn btn-success" id="action-button">Accept</a>
-                      <a data-id={{applicant.id}} data-type="reject" class="btn btn-error" id="action-button">Reject</a>
+                  <td>{{jobrequest.user.first_name}}({{jobrequest.user.email}})</td>
+                  <td>{{jobrequest.on_date}}</td>
+                  <td><a href="/resume/{{jobrequest.user.id}}">View</a></td>
+                  <td class="quick-buttons">
+
+                    <a data-id="{{jobrequest.user.id}}" data-jobid="{{jobrequest.job.id}}" data-type="accept" class="btn btn-success" id="action-button">Accept</a>
+                      <a data-id="{{jobrequest.user.id}}" data-type="reject" data-jobid="{{jobrequest.job.id}}" class="btn btn-warning" id="action-button">Reject</a>
                   </td>
               </tr>
             {% endfor %}
           </tbody>
     </table>
+    {% endblock body %}
     
 </body>
 {% block script %}
@@ -38,23 +43,24 @@
         $("#action-button").on('click',function(e){
             if($(this).data('type') == "accept"){
                 $.ajax({
-                    url: '/job/accept/'+$(this).data('id'),
-                    method: get,
+                    url: '/job/accept/'+$(this).data('id')+'/'+$(this).data('jobid'),
+                    method: 'get',
                     success: function(data){
-                        $('.quick-buttons').html('Accepted');
+                        $(this).parent().html('Accepted');
                     },
                     error: function(data){
-                        alert('something went wrong');
+                        alert(data);
                     },
 
                 });
             }
             else{
                 $.ajax({
-                    url: '/job/reject/'+$(this).data('id'),
-                    method: get,
+                    url: '/job/reject/'+$(this).data('id')+'/'+$(this).data('jobid'),
+
+                    method: 'get',
                     success: function(data){
-                        $('.quick-buttons').html('Rejected');
+                        $(this).parent().html('Rejected');
                     },
                     error: function(data){
                         alert(data);

@@ -127,14 +127,14 @@ class Job(models.Model):
 
 
 class Education(models.Model):
-    user = models.ForeignKey(User,limit_choices_to={'user_type':'is_normal'},on_delete=models.CASCADE)
+    user = models.ForeignKey(User,limit_choices_to={'user_type':'normal'},on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     institute = models.CharField(max_length=200)
     from_year = models.PositiveIntegerField()
     to_year = models.PositiveIntegerField()
 
 class Work(models.Model):
-    user = models.ForeignKey(User,limit_choices_to={'user_type':'is_normal'},on_delete=models.CASCADE)
+    user = models.ForeignKey(User,limit_choices_to={'user_type':'normal'},on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     institute = models.CharField(max_length=200)
     desc = models.CharField(max_length=255)
@@ -142,8 +142,9 @@ class Work(models.Model):
     to_year = models.PositiveIntegerField()
 
 class AppliedJob(models.Model):
-    user = models.ForeignKey(User,limit_choices_to={'user_type':'is_normal'},on_delete=models.CASCADE)
+    user = models.ForeignKey(User,limit_choices_to={'user_type':'normal'},on_delete=models.CASCADE)
     on_date = models.DateTimeField(auto_now_add=True)
     job = models.ForeignKey(Job,on_delete=models.CASCADE)
     status = models.CharField(choices=JOB_STATUS,max_length=50, default="applied")
+    closed = models.BooleanField(default=False)
     

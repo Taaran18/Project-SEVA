@@ -65,4 +65,9 @@ class JobAdmin(admin.ModelAdmin):
     list_display = ('id','title')
 
 
+class AppliedJobAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(AppliedJob, AppliedJobAdmin)
 admin.site.register(Job, JobAdmin)
+
