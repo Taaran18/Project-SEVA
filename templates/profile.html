@@ -7,7 +7,6 @@
     text-align:center;
   }
   ul{
-
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -30,40 +29,42 @@
 {% endblock js %}
 {% block body %}
 
-<section class="profile-block">
-<div style="display: flex; flex-direction: row;justify-content:center;padding: 50px;">
-    <img src="profile-photo.jpg" style="width: 200px; height: 200px; margin-right: 20px;">
-    <div style="display: flex; flex-direction: column; justify-content: center;">
-      <h2>NAME</h2>
-      <p>MOBILE NUMBER</p>
+<form>
+  <section class="profile-block">
+    <div style="display: flex; flex-direction: row;justify-content:center;padding: 50px;">
+      <img src="profile-photo.jpg" style="width: 200px; height: 200px; margin-right: 20px;">
+      <div style="display: flex; flex-direction: column; justify-content: center;">
+        <label for="name">Name:</label>
+          <input type="text" id="name" name="name">
+        <label for="mobile">Mobile Number:</label>
+          <input type="text" id="mobile" name="mobile">
+      </div>
     </div>
-  </div>
-  
-  <h3>Work Experience</h3>
-  <ul>
-    <li>
-      <strong>Job Title</strong> - Company Name (Start Date - End Date)<br>
-      Job Description
-    </li>
-    <li>
-      <strong>Job Title</strong> - Company Name (Start Date - End Date)<br>
-      Job Description
-    </li>
-    <!-- Add more work experience as needed -->
-  </ul>
-  
-  <h3 style=padding: 50px;>Education</h3>
-  <ul>
-    <li>
-      <strong>Degree Name</strong> - University Name (Graduation Date)<br>
-      Field of Study
-    </li>
-    <li>
-      <strong>Degree Name</strong> - University Name (Graduation Date)<br>
-      Field of Study
-    </li>
-    <!-- Add more education as needed -->
-  </ul>
-  
+    <h3>Work Experience</h3>
+<ul>
+  <li>
+    <label for="jobtitle">Job Title:</label>
+    <input type="text" id="jobtitle" name="jobtitle">
+  </li>
+  <li>
+    <label for="jobtitle">Job Title:</label>
+    <input type="text" id="jobtitle" name="jobtitle">
+  </li>
+  <!-- Add more work experience as needed -->
+</ul>
+
+<h3 style=padding: 50px;>Education</h3>
+<ul>
+  <li>
+    <label for="degreetitle">Degree Title:</label>
+    <input type="text" id="degreetitle" name="degreetitle">
+  </li>
+  <li>
+    <label for="degreetitle">Degree Title:</label>
+    <input type="text" id="degreetitle" name="degreetitle">
+  </li>
+  <!-- Add more education as needed -->
+</ul>
 </section>
+</form>
 {% endblock body %}

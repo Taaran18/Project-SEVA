@@ -59,9 +59,6 @@
   display: inline-block;
   transition: background-color 0.6s ease;
 }
-.active, .dot:hover {
-  background-color: #717171;
-}
 .fade {
   animation-name: fade;
   animation-duration: 1.5s;
@@ -116,8 +113,6 @@
 }
 
 .slide-images{
-  {% comment %} width: 3600px;
-  height: 800px; {% endcomment %}
   margin: 0 0 0 -2400px;
   position: relative;
   -webkit-animation-name: slide_animation;
@@ -133,63 +128,24 @@
 }
 
 .img-container{
-  {% comment %} height: 800px;
-  width: 1000px; {% endcomment %}
   position: relative;
   float: left;
   margin: 1em;
 }
 
 socialThreeDiv {
-  width: 100%;
-  float: left;
+  max-width: 100%;
+  float: center;
   padding: 49px 0
-}
-
-._fbDivIn {
-  width: 100%;
-  float: left;
-}
-
-.fbHdngDiv {
-  width: 100%;
-  float: left;
-  background: #4867aa;
-  -webkit-border-top-left-radius: 6px;
-  -moz-border-top-left-radius: 6px;
-  border-top-left-radius: 6px;
-  -webkit-border-top-right-radius: 6px;
-  -moz-border-top-right-radius: 6px;
-  border-top-right-radius: 6px;
-  padding: 8px 15px;
-}
-
-.fbHdngDiv h2 {
-  color: #fff;
-  font-weight: 600;
-  letter-spacing: 1px
-}
-
-.fbDivCnt {
-  width: 100%;
-  float: left;
-  background: #4867aa
-}
-
-._twtrDiv .fbDivCnt {
-  background: #1da1f2
 }
 
 ._twtrDiv .fbHdngDiv {
   background: #1da1f2;
 }
 
-._youtbDiv .fbHdngDiv {
-  background: #ff0000;
-}
 .socialMediaSec {
   width: 100%;
-  float: left;
+  float: center;
 }
 </style>
 {% endblock css %}
@@ -218,7 +174,7 @@ socialThreeDiv {
       </div>
 
         <div class="carousel-item">
-              <img src="/static/logo/air.jpeg" class="d-block w-100" alt="...">
+              <img src="/static/logo/navy.jpeg" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
         <h1>INDIAN NAVY DAY</h1>
         <h2>4th December</h2>
@@ -227,7 +183,7 @@ socialThreeDiv {
         </div>
 
         <div class="carousel-item">
-              <img src="/static/logo/navy.jpeg" class="d-block w-100" alt="...">
+              <img src="/static/logo/air.jpeg" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
         <h1>INDIAN AIR FORCE DAY</h1>
         <h2>8th October</h2>
@@ -245,7 +201,7 @@ socialThreeDiv {
         </div>
 
         <div class="carousel-item">
-          <img src="/static/logo/coast-guard.jpg" class="d-block w-100" alt="...">
+          <img src="/static/logo/corps.jpg" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
         <h1>NATIONAL CADET CORPS DAY</h1>
         <h2>15th July</h2>
@@ -254,20 +210,18 @@ socialThreeDiv {
         </div>
 
         <div class="carousel-item">
-          <img src="/static/logo/coast-guard.jpg" class="d-block w-100" alt="...">
+          <img src="/static/logo/armed.jpg" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
-        <h1>NATIONAL CADET CORPS DAY</h1>
-        <h2>15th July</h2>
-        <h3>Unity and Discipline</h3>
+          <h1>ARMED FORCES FLAG DAY</h1>
+          <h2>7th December</h2>
         </div>
       </div>  
 
         <div class="carousel-item">
-          <img src="/static/logo/coast-guard.jpg" class="d-block w-100" alt="...">
+          <img src="/static/logo/kargil.jpg" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
-        <h1>NATIONAL CADET CORPS DAY</h1>
-        <h2>15th July</h2>
-        <h3>Unity and Discipline</h3>
+        <h1>KARGIL VIJAY DIWAS</h1>
+        <h2>26th July</h2>
         </div>
         </div>
 
@@ -342,38 +296,29 @@ socialThreeDiv {
   <div class="slider-frame">
       <div class="slide-images">
               <div class="img-container">
-                  <img src="/static/logo/air.jpeg">
+                  <img src="/static/logo/1.jpg">
               </div>
               <div class="img-container">
-                  <img src="/static/logo/air.jpeg">
+                  <img src="/static/logo/2.jpg">
               </div>
               <div class="img-container">
-                  <img src="/static/logo/air.jpeg">
+                  <img src="/static/logo/3.jpg">
               </div>
               <div class="img-container">
-                <img src="/static/logo/air.jpeg">
-            </div>
-            <div class="img-container">
-                <img src="/static/logo/air.jpeg">
+                <img src="/static/logo/4.jpg">
             </div>
       </div>
   </div>
 
-  <section class="socialMediaSec">
-    <div class="container">
-        <div class="socialThreeDiv">
-            <div class="col-md-4 col-xs-12 _twtrDiv">
-                <div class="_fbDivIn">
-                    <div class="fbHdngDiv">
-                        <h2>Twitter</h2>
-                    </div>
-                    <div class="fbDivCnt">
-                        <div class="twitter-timeline twitter-timeline-rendered" style="display: flex; width: 100%; max-width: 100%; margin-top: 0px; margin-bottom: 0px;"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="" style="position: static; visibility: visible; width: 283px; height: 450px; display: block; flex-grow: 1;" title="Twitter Timeline" src="https://syndication.twitter.com/srv/timeline-profile/screen-name/MSJEGOI?dnt=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfbWl4ZWRfbWVkaWFfMTU4OTciOnsiYnVja2V0IjoidHJlYXRtZW50IiwidmVyc2lvbiI6bnVsbH0sInRmd19leHBlcmltZW50c19jb29raWVfZXhwaXJhdGlvbiI6eyJidWNrZXQiOjEyMDk2MDAsInZlcnNpb24iOm51bGx9LCJ0ZndfZHVwbGljYXRlX3NjcmliZXNfdG9fc2V0dGluZ3MiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3ZpZGVvX2hsc19keW5hbWljX21hbmlmZXN0c18xNTA4MiI6eyJidWNrZXQiOiJ0cnVlX2JpdHJhdGUiLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2xlZ2FjeV90aW1lbGluZV9zdW5zZXQiOnsiYnVja2V0Ijp0cnVlLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3R3ZWV0X2VkaXRfZnJvbnRlbmQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfX0%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=false&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;maxHeight=450px&amp;origin=https%3A%2F%2Fsacred.dosje.gov.in%2F&amp;sessionId=5d495a6cb68b346d175f4fb1b1261fa058069e66&amp;showHeader=true&amp;showReplies=false&amp;transparent=false&amp;widgetsVersion=aaf4084522e3a%3A1674595607486"></iframe></div>
-                        <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                    </div>
-                </div>
-            </div>
+  <div class="col-md-4 col-xs-12 _twtrDiv">
+    <div class="_fbDivIn">
+        <div class="fbHdngDiv">
+            <h2>Twitter</h2>
+        </div>
+        <div class="fbDivCnt">
+            <div class="twitter-timeline twitter-timeline-rendered" style="display: flex; width: 100%; max-width: 100%; margin-top: 0px; margin-bottom: 0px;"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="" style="position: static; visibility: visible; width: 300px; height: 450px; display: block; flex-grow: 1;" title="Twitter Timeline" src="https://syndication.twitter.com/srv/timeline-profile/screen-name/MSJEGOI?dnt=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfbWl4ZWRfbWVkaWFfMTU4OTciOnsiYnVja2V0IjoidHJlYXRtZW50IiwidmVyc2lvbiI6bnVsbH0sInRmd19leHBlcmltZW50c19jb29raWVfZXhwaXJhdGlvbiI6eyJidWNrZXQiOjEyMDk2MDAsInZlcnNpb24iOm51bGx9LCJ0ZndfZHVwbGljYXRlX3NjcmliZXNfdG9fc2V0dGluZ3MiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3ZpZGVvX2hsc19keW5hbWljX21hbmlmZXN0c18xNTA4MiI6eyJidWNrZXQiOiJ0cnVlX2JpdHJhdGUiLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2xlZ2FjeV90aW1lbGluZV9zdW5zZXQiOnsiYnVja2V0Ijp0cnVlLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3R3ZWV0X2VkaXRfZnJvbnRlbmQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfX0%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=false&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;maxHeight=450px&amp;origin=https%3A%2F%2Fsacred.dosje.gov.in%2Findex.php&amp;sessionId=8a307795cb0b9cfb79a6c92c1c333104858d9d8f&amp;showHeader=true&amp;showReplies=false&amp;transparent=false&amp;widgetsVersion=aaf4084522e3a%3A1674595607486"></iframe></div>
+            <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
     </div>
-</section>
+</div>
 {% endblock body %}

@@ -72,6 +72,7 @@ def user_registration(request):
             f.user_type = 'normal'
             f.save()
             form.save_m2m()
+
             return redirect('login')
     return render(request,'user_reg.html',{'form': form})
 
