@@ -6,25 +6,34 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('core', '0007_auto_20230303_2225'),
+        ("core", "0007_auto_20230303_2225"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='job',
-            name='applicants',
-            field=models.ManyToManyField(blank=True, limit_choices_to={'user_type': 'normal'}, null=True, related_name='posted_by', to=settings.AUTH_USER_MODEL),
+            model_name="job",
+            name="applicants",
+            field=models.ManyToManyField(
+                blank=True,
+                limit_choices_to={"user_type": "normal"},
+                null=True,
+                related_name="posted_by",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
         migrations.AlterField(
-            model_name='job',
-            name='company',
-            field=models.ForeignKey(limit_choices_to={'user_type': 'organisation'}, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="job",
+            name="company",
+            field=models.ForeignKey(
+                limit_choices_to={"user_type": "organisation"},
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
         migrations.AlterField(
-            model_name='job',
-            name='duration',
+            model_name="job",
+            name="duration",
             field=models.CharField(max_length=80),
         ),
     ]

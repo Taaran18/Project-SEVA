@@ -1,86 +1,93 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "base.html" %} {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Registration Form{% endblock title %}</title>
     {% block css %}
-        <link rel="stylesheet" href="{% static 'css/reg.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reg.css' %}" />
     {% endblock css %}
-    
-</head>
-<body>
+  </head>
+  <body>
     {% block body %}
-        <section class="buttons">
-        <button class="btn btn-primary"  id="user-form-btn">User</button>
-        <button class="btn btn-primary"  id="org-form-btn">Organisation</button>
-        </section>
-        Have a account? <a href="/login">Login</a>
-        <section id="reg-form">
-            <form method="POST" action='register/user' class="registration-form" id="user-form" enctype="multipart/form-data">
-                <center>
-                    <span class="heading" style="font-size: 1.5em;">Register</span>
-                </center>
-            
-            {% csrf_token %}
-            <table>
-            {% for field in user_form %}
-                
+    <section class="buttons">
+      <button class="btn btn-primary" id="user-form-btn">User</button>
+      <button class="btn btn-primary" id="org-form-btn">Organisation</button>
+    </section>
+    Have a account? <a href="/login">Login</a>
+    <section id="reg-form">
+      <form
+        method="POST"
+        action="register/user"
+        class="registration-form"
+        id="user-form"
+        enctype="multipart/form-data"
+      >
+        <center>
+          <span class="heading" style="font-size: 1.5em">Register</span>
+        </center>
 
-                    <tr>
-                        <td>{{field.label}}</td>
-                        <td>{{field}}</td>
-                    </tr>
-                
-            {% endfor %}
-            </table>
-            <center>
-            <input type="submit" class="btn btn-success" value="Submit">
-            </center>
-            </form>
+        {% csrf_token %}
+        <table>
+          {% for field in user_form %}
 
+          <tr>
+            <td>{{field.label}}</td>
+            <td>{{field}}</td>
+          </tr>
 
+          {% endfor %}
+        </table>
+        <center>
+          <input type="submit" class="btn btn-success" value="Submit" />
+        </center>
+      </form>
 
-            <form method="POST" action="/register/organisation" class="registration-form" id="org-form" enctype="multipart/form-data">
-                <center>
-                    <span class="heading" style="font-size: 1.5em;">Register as Organisation</span>
-                </center>
-            
-            {% csrf_token %}
-            <table>
-            {% for field in org_form %}
-                
+      <form
+        method="POST"
+        action="/register/organisation"
+        class="registration-form"
+        id="org-form"
+        enctype="multipart/form-data"
+      >
+        <center>
+          <span class="heading" style="font-size: 1.5em"
+            >Register as Organisation</span
+          >
+        </center>
 
-                    <tr>
-                        <td>{{field.label}}</td>
-                        <td>{{field}}</td>
-                    </tr>
-                
-            {% endfor %}
-            </table>
-            <center><input type="submit" class="btn btn-success" value="Submit"></center>
-            </form>
-        </section>
-        
+        {% csrf_token %}
+        <table>
+          {% for field in org_form %}
+
+          <tr>
+            <td>{{field.label}}</td>
+            <td>{{field}}</td>
+          </tr>
+
+          {% endfor %}
+        </table>
+        <center>
+          <input type="submit" class="btn btn-success" value="Submit" />
+        </center>
+      </form>
+    </section>
+
     {% endblock body %}
-</body>
-{% block script %}
-    
+  </body>
+  {% block script %}
 
-<script>
-    $("#org-form-btn").on('click', function(){
-        $("#user-form").css('display','none');
-        $("#org-form").css('display','block');
-
+  <script>
+    $("#org-form-btn").on("click", function () {
+      $("#user-form").css("display", "none");
+      $("#org-form").css("display", "block");
     });
-    $("#user-form-btn").on('click', function(){
-        $("#user-form").css('display','block');
-        $("#org-form").css('display','none');
-
+    $("#user-form-btn").on("click", function () {
+      $("#user-form").css("display", "block");
+      $("#org-form").css("display", "none");
     });
-</script>
-{% endblock script %}
+  </script>
+  {% endblock script %}
 </html>

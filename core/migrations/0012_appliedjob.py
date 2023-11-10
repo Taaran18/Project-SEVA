@@ -6,20 +6,50 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('core', '0011_work_desc'),
+        ("core", "0011_work_desc"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='AppliedJob',
+            name="AppliedJob",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('on_date', models.DateTimeField(auto_now_add=True)),
-                ('status', models.CharField(choices=[('applied', 'applied'), ('accepted', 'accepted'), ('rejected', 'rejected')], default='applied', max_length=50)),
-                ('job', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.job')),
-                ('user', models.ForeignKey(limit_choices_to={'user_type': 'is_normal'}, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("on_date", models.DateTimeField(auto_now_add=True)),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("applied", "applied"),
+                            ("accepted", "accepted"),
+                            ("rejected", "rejected"),
+                        ],
+                        default="applied",
+                        max_length=50,
+                    ),
+                ),
+                (
+                    "job",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="core.job"
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        limit_choices_to={"user_type": "is_normal"},
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

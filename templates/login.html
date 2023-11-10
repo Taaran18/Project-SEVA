@@ -1,56 +1,49 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "base.html" %} {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Login{% endblock title %}</title>
     {% block css %}
-        <link rel="stylesheet" href="{% static 'css/reg.css' %}">
-        <style>
-            .registration-form{
-                box-shadow: 1px 5px 2px 2px #e2e2e2;
-                width: fit-content;
-                padding:4em;
-            }
-        </style>
+    <link rel="stylesheet" href="{% static 'css/reg.css' %}" />
+    <style>
+      .registration-form {
+        box-shadow: 1px 5px 2px 2px #e2e2e2;
+        width: fit-content;
+        padding: 4em;
+      }
+    </style>
     {% endblock css %}
-    
-</head>
-<body>
+  </head>
+  <body>
     {% block body %}
-        
-            <form method="POST" class="registration-form">
-                <center>
-                    <span class="heading" style="font-size: 1.5em; margin-bottom:1em;">Login</span>
-                </center>
-            
-            {% csrf_token %}
-            <table>
-           
 
-                    <tr>
-                        <td>Email</td>
-                        <td><input type="email" name="username"></td>
-                    </tr>
-                    <tr>
-                        <td>Password</td>
-                        <td><input type="password" name="password"></td>
-                    </tr>
-                
-    
-            </table>
-            <input type="submit" class="btn btn-success" value="Submit">
-            </form>
+    <form method="POST" class="registration-form">
+      <center>
+        <span class="heading" style="font-size: 1.5em; margin-bottom: 1em"
+          >Login</span
+        >
+      </center>
+
+      {% csrf_token %}
+      <table>
+        <tr>
+          <td>Email</td>
+          <td><input type="email" name="username" /></td>
+        </tr>
+        <tr>
+          <td>Password</td>
+          <td><input type="password" name="password" /></td>
+        </tr>
+      </table>
+      <input type="submit" class="btn btn-success" value="Submit" />
+    </form>
     {% endblock body %}
-</body>
-{% block script %}
-    
+  </body>
+  {% block script %}
 
-<script>
-    
-</script>
-{% endblock script %}
+  <script></script>
+  {% endblock script %}
 </html>

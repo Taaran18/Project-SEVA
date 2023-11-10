@@ -1,79 +1,80 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "base.html" %} {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Create Job{% endblock title %}</title>
-</head>
-{% block css %}
-<style>
-    .form{
-        margin: 2em 4em;
+  </head>
+  {% block css %}
+  <style>
+    .form {
+      margin: 2em 4em;
     }
-    .heading{
-        text-align: center;
-        margin: auto;
-        font-weight: bolder;
-        font-size: 2em;
-        text-decoration: underline;
+    .heading {
+      text-align: center;
+      margin: auto;
+      font-weight: bolder;
+      font-size: 2em;
+      text-decoration: underline;
     }
-    .fieldset{
-        margin: 2em auto;
+    .fieldset {
+      margin: 2em auto;
     }
-    .fieldset .label{
-        font-weight: 600;
-        font-size:1.1em;
+    .fieldset .label {
+      font-weight: 600;
+      font-size: 1.1em;
     }
-    .fieldset .field input,.fieldset .field select,.fieldset .field textarea{
-        width: 50vw;
-        height: 2.5em;
-        border-radius: 1em;
-        padding: 0.5em 1em;
+    .fieldset .field input,
+    .fieldset .field select,
+    .fieldset .field textarea {
+      width: 50vw;
+      height: 2.5em;
+      border-radius: 1em;
+      padding: 0.5em 1em;
     }
-    .fieldset .field textarea{
-        height: 4em;
+    .fieldset .field textarea {
+      height: 4em;
     }
-</style>
-{% endblock css %}
-<body>
+  </style>
+  {% endblock css %}
+  <body>
     {% block body %}
-    <section class='form'>
-        <div class="heading">Create Job</div>
-        <form method="POST">
-            {% csrf_token %}
-                <div class="fields">
-                    {% for field in form %}
+    <section class="form">
+      <div class="heading">Create Job</div>
+      <form method="POST">
+        {% csrf_token %}
+        <div class="fields">
+          {% for field in form %}
 
-                        <div class="fieldset">
-                            <div class="label">{{field.label}}</div>    
-                            <div class="field">{{field}}</div>
-                        </div>
-                        
-                    {% endfor %}
-                    {% comment %}
-                        <div class="fieldset">
-                                            <div class="label">About The Program</div>    
-                                            <div class="field"><textarea name="about_the_program"></textarea></div>
-                                        </div>
-                                        <div class="fieldset">
-                                            <div class="label">Perks</div>    
-                                            <div class="field"><textarea name="perks"></textarea></div>
-                                        </div>
-                                        <div class="fieldset">
-                                            <div class="label">Who Can Apply?</div>    
-                                            <div class="field"><textarea name="who_can_apply"></textarea></div>
-                                        </div>
-                    {% endcomment %}
-                </div>
-            <div style="margin:auto;">
-                <input class="btn btn-success" type="submit" value="Submit">
+          <div class="fieldset">
+            <div class="label">{{field.label}}</div>
+            <div class="field">{{field}}</div>
+          </div>
+
+          {% endfor %} {% comment %}
+          <div class="fieldset">
+            <div class="label">About The Program</div>
+            <div class="field">
+              <textarea name="about_the_program"></textarea>
             </div>
-        </form>
-
+          </div>
+          <div class="fieldset">
+            <div class="label">Perks</div>
+            <div class="field"><textarea name="perks"></textarea></div>
+          </div>
+          <div class="fieldset">
+            <div class="label">Who Can Apply?</div>
+            <div class="field"><textarea name="who_can_apply"></textarea></div>
+          </div>
+          {% endcomment %}
+        </div>
+        <div style="margin: auto">
+          <input class="btn btn-success" type="submit" value="Submit" />
+        </div>
+      </form>
     </section>
     {% endblock body %}
-</body>
+  </body>
 </html>

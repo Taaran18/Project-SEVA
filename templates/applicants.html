@@ -1,99 +1,102 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "base.html" %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Applicants{% endblock title %}</title>
-</head>
-{% block css %}
-    <style>
-    body{
-        text-align:center;
+  </head>
+  {% block css %}
+  <style>
+    body {
+      text-align: center;
     }
-    table{
-        margin:auto;
+    table {
+      margin: auto;
     }
-    table thead{
-        background-color: lightgray;
+    table thead {
+      background-color: lightgray;
     }
-    table tr{
-        border: 1px solid grey;
+    table tr {
+      border: 1px solid grey;
     }
-    table td{
-        width: 15em;
+    table td {
+      width: 15em;
     }
-
-    </style>
-{% endblock css %}
-<body>
+  </style>
+  {% endblock css %}
+  <body>
     {% block body %}
-        
-    
+
     <table>
-        <thead>
-            <tr>
-              <th><h3>Applicant</h3></th>
-              <th><h3>On Date</h3></th>
-              <th><h3>Resume</h3></th>
-              <th><h3>Status</h3></th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for applicant,jobrequest in zipdata %}
-              <tr>
-                  <td>{{jobrequest.user.first_name}}({{jobrequest.user.email}})</td>
-                  <td>{{jobrequest.on_date}}</td>
-                  <td><a href="/resume/{{jobrequest.user.id}}">View</a></td>
-                  <td class="quick-buttons">
-                    {% if jobrequest.closed %}
-                        {{jobrequest.status}}
-                    {% else %}
-                    <a data-id="{{jobrequest.user.id}}" data-jobid="{{jobrequest.job.id}}" data-type="accept" class="btn btn-success action-button" class="">Accept</a>
-                      <a data-id="{{jobrequest.user.id}}" data-type="reject" data-jobid="{{jobrequest.job.id}}" class="btn btn-warning action-button" >Reject</a>
-                      {% endif %}
-                  </td>
-              </tr>
-            {% endfor %}
-          </tbody>
+      <thead>
+        <tr>
+          <th><h3>Applicant</h3></th>
+          <th><h3>On Date</h3></th>
+          <th><h3>Resume</h3></th>
+          <th><h3>Status</h3></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for applicant,jobrequest in zipdata %}
+        <tr>
+          <td>{{jobrequest.user.first_name}}({{jobrequest.user.email}})</td>
+          <td>{{jobrequest.on_date}}</td>
+          <td><a href="/resume/{{jobrequest.user.id}}">View</a></td>
+          <td class="quick-buttons">
+            {% if jobrequest.closed %} {{jobrequest.status}} {% else %}
+            <a
+              data-id="{{jobrequest.user.id}}"
+              data-jobid="{{jobrequest.job.id}}"
+              data-type="accept"
+              class="btn btn-success action-button"
+              class=""
+              >Accept</a
+            >
+            <a
+              data-id="{{jobrequest.user.id}}"
+              data-type="reject"
+              data-jobid="{{jobrequest.job.id}}"
+              class="btn btn-warning action-button"
+              >Reject</a
+            >
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
     {% endblock body %}
-    
-</body>
-{% block script %}
-    <script>
-        $(".action-button").on('click',function(e){
-            if($(this).data('type') == "accept"){
-                $.ajax({
-                    url: '/job/accept/'+$(this).data('id')+'/'+$(this).data('jobid'),
-                    method: 'get',
-                    success: function(data){
-                        
-                        location.reload();
-                    },
-                    error: function(data){
-                        alert(data);
-                    },
-
-                });
-            }
-            else if($(this).data('type') == "reject"){
-                $.ajax({
-                    url: '/job/reject/'+$(this).data('id')+'/'+$(this).data('jobid'),
-                    method: 'get',
-                    success: function(data){
-                        
-                        location.reload();
-                    },
-                    error: function(data){
-                        alert(data);
-                    },
-
-                });
-
-            }
-        })
-    </script>   
-{% endblock script %}
+  </body>
+  {% block script %}
+  <script>
+    $(".action-button").on("click", function (e) {
+      if ($(this).data("type") == "accept") {
+        $.ajax({
+          url:
+            "/job/accept/" + $(this).data("id") + "/" + $(this).data("jobid"),
+          method: "get",
+          success: function (data) {
+            location.reload();
+          },
+          error: function (data) {
+            alert(data);
+          },
+        });
+      } else if ($(this).data("type") == "reject") {
+        $.ajax({
+          url:
+            "/job/reject/" + $(this).data("id") + "/" + $(this).data("jobid"),
+          method: "get",
+          success: function (data) {
+            location.reload();
+          },
+          error: function (data) {
+            alert(data);
+          },
+        });
+      }
+    });
+  </script>
+  {% endblock script %}
 </html>

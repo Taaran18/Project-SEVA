@@ -4,21 +4,22 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('core', '0009_auto_20230304_0422'),
+        ("core", "0009_auto_20230304_0422"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='user',
-            name='address',
-            field=models.CharField(default=' faknkdjsfnkadfjnsjdljslkj sjdf lkkjdfl', max_length=255),
+            model_name="user",
+            name="address",
+            field=models.CharField(
+                default=" faknkdjsfnkadfjnsjdljslkj sjdf lkkjdfl", max_length=255
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='user',
-            name='user_dob',
+            model_name="user",
+            name="user_dob",
             field=models.DateField(null=True),
         ),
     ]

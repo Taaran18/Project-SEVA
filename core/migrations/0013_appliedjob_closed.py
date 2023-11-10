@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('core', '0012_appliedjob'),
+        ("core", "0012_appliedjob"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='appliedjob',
-            name='closed',
+            model_name="appliedjob",
+            name="closed",
             field=models.BooleanField(default=False),
         ),
     ]

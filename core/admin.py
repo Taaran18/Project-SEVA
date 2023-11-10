@@ -12,7 +12,6 @@ class WorkInline(admin.TabularInline):
     extra = 1
 
 
-
 class EducationInline(admin.TabularInline):
     model = Education
     min_num = 0
@@ -20,40 +19,57 @@ class EducationInline(admin.TabularInline):
     extra = 1
 
 
-
 class CustomUserAdmin(UserAdmin):
-    '''
-        Admin View for CustomUser
-    '''
+    """
+    Admin View for CustomUser
+    """
+
     model = get_user_model()
-    list_display = ('first_name', 'user_type')
-    list_filter = ('user_type',)
+    list_display = ("first_name", "user_type")
+    list_filter = ("user_type",)
     fieldsets = (
-        (None, {'fields': ('email', 'password','user_type','photo')}),
-        ('Personal info', {'fields': ('first_name', 'last_name','address')}),
-        ('Other info', {'fields': ('about','mobile','skills','user_dob')}),
-        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
-        ('Important dates', {'fields': ('last_login', 'date_joined')}),
-        )
-        
-    add_fieldsets = (
-                    ('Personal Information',{
-                     'fields': ('username','email','mobile','user_type','password1','password2')
-                      }
-                    ),
+        (None, {"fields": ("email", "password", "user_type", "photo")}),
+        ("Personal info", {"fields": ("first_name", "last_name", "address")}),
+        ("Other info", {"fields": ("about", "mobile", "skills", "user_dob")}),
+        (
+            "Permissions",
+            {
+                "fields": (
+                    "is_active",
+                    "is_staff",
+                    "is_superuser",
+                    "groups",
+                    "user_permissions",
                 )
-    
+            },
+        ),
+        ("Important dates", {"fields": ("last_login", "date_joined")}),
+    )
+
+    add_fieldsets = (
+        (
+            "Personal Information",
+            {
+                "fields": (
+                    "username",
+                    "email",
+                    "mobile",
+                    "user_type",
+                    "password1",
+                    "password2",
+                )
+            },
+        ),
+    )
+
     def get_inlines(self, request, obj=None):
-        if obj and obj.user_type!="organisation":
-            return [
-             WorkInline, EducationInline
-            ]
+        if obj and obj.user_type != "organisation":
+            return [WorkInline, EducationInline]
         else:
             return []
-    
-  
-    def name(self,obj):
-        return (obj.first_name + ' '+obj.last_name)
+
+    def name(self, obj):
+        return obj.first_name + " " + obj.last_name
 
 
 admin.site.register(get_user_model(), CustomUserAdmin)
@@ -62,14 +78,17 @@ admin.register(settings.AUTH_USER_MODEL, UserAdmin)
 
 
 class JobAdmin(admin.ModelAdmin):
-    list_display = ('id','title')
+    list_display = ("id", "title")
 
 
 class AppliedJobAdmin(admin.ModelAdmin):
     pass
+
+
 class ContactAdmin(admin.ModelAdmin):
     pass
+
+
 admin.site.register(Contact, ContactAdmin)
 admin.site.register(AppliedJob, AppliedJobAdmin)
 admin.site.register(Job, JobAdmin)
-
